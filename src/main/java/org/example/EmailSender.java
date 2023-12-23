@@ -1,5 +1,7 @@
 package org.example;
 
+import project.najah.edu.ErrorMsg;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -9,7 +11,6 @@ public class EmailSender {
     public static boolean isSented() {
         return isSented;
     }
-
     private static boolean isSented=false;
 
     public static void sendEmail(String from, String to, String subject, String messageText) {
@@ -37,7 +38,7 @@ public class EmailSender {
             message.setText(messageText);
             Transport.send(message);
         } catch (MessagingException m) {
-            m.printStackTrace();
+            ErrorMsg.showError();
         }
         isSented=true;
 
