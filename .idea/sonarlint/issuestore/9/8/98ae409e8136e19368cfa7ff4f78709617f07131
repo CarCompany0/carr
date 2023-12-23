@@ -1,0 +1,38 @@
+
+Y
+java:S2629g"7Use the built-in formatting to construct this argument.(¨ñšışÿÿÿÿ8´ûçÖÄ1
+b	java:S107="AConstructor has 9 parameters, which is greater than 7 authorized.(â½˜øÿÿÿÿ8ÒûçÖÄ1
+S
+java:S2696&"6Make the enclosing method "static" or remove this set.(ó®õ‡8ƒ¤ĞäÁ1
+R
+java:S2209&"5Change this instance-reference to a static reference.(ó®õ‡8…¤ĞäÁ1
+S
+java:S2696."6Make the enclosing method "static" or remove this set.(…âîš8†¤ĞäÁ1
+R
+java:S2209."5Change this instance-reference to a static reference.(…âîš8†¤ĞäÁ1
+S
+java:S26966"6Make the enclosing method "static" or remove this set.(´¹½ñ8‡¤ĞäÁ1
+R
+java:S22096"5Change this instance-reference to a static reference.(´¹½ñ8‡¤ĞäÁ1
+E
+java:S3010@"(Remove this assignment of "productName".(Æ£÷Á8‡¤ĞäÁ1
+K
+java:S3010A")Remove this assignment of "customerName".(Úóº®ıÿÿÿÿ8ˆ¤ĞäÁ1
+J
+java:S3010B"-Remove this assignment of "customerLocation".(×İÆ·8ˆ¤ĞäÁ1
+J
+java:S3010C"-Remove this assignment of "customerPhoneNum".(¥ÍíÍ8ˆ¤ĞäÁ1
+R
+java:S2209@"5Change this instance-reference to a static reference.(Æ£÷Á8‰¤ĞäÁ1
+W
+java:S2209A"5Change this instance-reference to a static reference.(Úóº®ıÿÿÿÿ8‰¤ĞäÁ1
+R
+java:S2209B"5Change this instance-reference to a static reference.(×İÆ·8‰¤ĞäÁ1
+R
+java:S2209C"5Change this instance-reference to a static reference.(¥ÍíÍ8‰¤ĞäÁ1
+S
+java:S2696L"6Make the enclosing method "static" or remove this set.(Æ£÷Á8Š¤ĞäÁ1
+R
+java:S2209L"5Change this instance-reference to a static reference.(Æ£÷Á8Š¤ĞäÁ1
+X
+java:S2209™"5Change this instance-reference to a static reference.(İºĞàıÿÿÿÿ8‘¤ĞäÁ1

@@ -1,0 +1,8 @@
+
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(âä»8¬ÔËØÀ1
+T
+java:S2629e"7Use the built-in formatting to construct this argument.(¡µÊ·8®ÔËØÀ1
+s
+java:S1450"VRemove the "numDate" field and declare it as a local variable in the relevant methods.(óı¹8ñ¾ĞØÀ1
+H
+java:S1068"+Remove this unused "numDate" private field.(óı¹8ü¾ĞØÀ1
