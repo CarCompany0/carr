@@ -21,8 +21,6 @@ public class User {
         return numUser;
     }
 
-
-
     public User(String username,String email, String password, String type,String location,String phoneNum) {
         this.username=username;
         this.email = email;
@@ -31,7 +29,6 @@ public class User {
         this.location=location;
         this.phoneNum=phoneNum;
     }
-
     public User() {
     }
     public static Boolean getIsUserUpdated() {

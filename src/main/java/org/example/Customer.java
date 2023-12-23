@@ -1,6 +1,6 @@
 package org.example;
 
-import car.database.category_list;
+import car.database.CategoryList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,25 +14,13 @@ public class Customer extends User {
 
     private static boolean isViewed=false;
 
-    public static boolean isIsExisted() {
-        return isExisted;
-    }
-
     private static boolean isExisted = false;
-    public static boolean isIsPlaced() {
-        return isPlaced;
-    }
-
-    private static boolean isPlaced=false;
 
     public static boolean isIsSented() {
         return isSented;
     }
 
     public static boolean isSented=false;
-
-
-
 
     public static class Sss {
         private ArrayList<Order> orderList = new ArrayList<>();
@@ -51,12 +39,7 @@ public class Customer extends User {
 
     public Customer(String username, String email, String location, String phoneNum) {
         super(username, email, null, "Customer", location, phoneNum);
-
     }
-
-    // Add an order for the customer
-
-
     // Display all orders for the customer
     public static void displayOrders() {
         if (oL.getOrderList() != null && !oL.getOrderList().isEmpty()) {
@@ -64,6 +47,7 @@ public class Customer extends User {
             for (Order order : oL.getOrderList()) {
                 LOGGER.info("\u001b[35m" + i + "- " + " Product name: " + order.product.getName() + "  " +
                         "Quantity: " + order.quantity + "  " + "Order Total: " + order.getTotalPrice() + " $\u001b[0m");
+
                 i++;
             }
             isViewed = true;
@@ -97,10 +81,7 @@ public class Customer extends User {
             return productPrice * quantity;
         }
 
-        public static void PlaceOrder(List<Product> product, int selectedProductIndex) {
-
-            // Create an instance of Customer
-            Customer cus = new Customer(null, null, null, null);
+        public static void placeOrder(List<Product> product, int selectedProductIndex) {
 
             if (selectedProductIndex >= 0 && selectedProductIndex < product.size()) {
                 Product selectedProduct = product.get(selectedProductIndex);
@@ -142,10 +123,9 @@ public class Customer extends User {
         }
     }
 
-
     public static void search(List<Product>productList) {
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
 
 
         LOGGER.info("\u001b[35mEnter the product name:\u001b[0m");
@@ -169,7 +149,7 @@ public class Customer extends User {
                 // Process the user's decision
                 if (buyDecision.equalsIgnoreCase("yes")) {
                     // Pass the index of the selected product to the PlaceOrder method
-                    Order.PlaceOrder(product1, i);
+                    Order.placeOrder(product1, i);
                      break;
                 } else if(buyDecision.equalsIgnoreCase("no")) {
                     LOGGER.info("\u001b[34mMaybe next time. Have a great day!\u001b[0m");

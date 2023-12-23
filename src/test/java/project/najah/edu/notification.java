@@ -2,8 +2,8 @@ package project.najah.edu;
 
 import car.database.InstallationRequestsList;
 import car.database.Userslist;
-import car.database.category_list;
-import car.database.installationDatesList;
+import car.database.CategoryList;
+import car.database.InstallationDatesList;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -39,7 +39,7 @@ public class notification {
     public void theUserIsInBrowseProductsPage() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
         Product.viewProducts(product1);
     }
     @Given("the user has placed an order of product {string}")
@@ -66,7 +66,7 @@ public class notification {
     @Then("an email is to be sent to {string}")
     public void anEmailIsToBeSentTo(String string) {
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
         boolean isBouught=false;
         int selectedProductIndex = selected3 - 1;
         Customer.Sss orderl = new Customer.Sss();
@@ -123,10 +123,10 @@ this.selectedDateIndex3=Integer.parseInt(string);
         // Write code here that turns the phrase above into concrete actions
         boolean isRequsted=false;
         List<InstallerDates> inss;
-        inss = installationDatesList.getInstaller();
+        inss = InstallationDatesList.getInstaller();
 
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
 
         List<InstallationRequest> req1;
         req1 = InstallationRequestsList.getRequest();

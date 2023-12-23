@@ -5,10 +5,13 @@ import org.example.InstallerDates;
 import java.util.ArrayList;
 import java.util.List;
 
-public class installationDatesList {
+public class InstallationDatesList {
 
     private static final List<InstallerDates> date = new ArrayList<>();
-
+    // Private constructor to hide the implicit public one
+    private InstallationDatesList() {
+        throw new IllegalStateException("Utility class");
+    }
     static{
         date.add(new InstallerDates("09", "11","2023","6:00","Ahmed"));
         date.add(new InstallerDates("11", "03","2023","5:00","Ali"));
@@ -18,9 +21,6 @@ public class installationDatesList {
 
     public static List<InstallerDates> getInstaller() {
         return date;
-    }
-    public static void addDate (InstallerDates ins){
-        date.add(ins);
     }
 
 

@@ -2,8 +2,8 @@ package project.najah.edu;
 
 import car.database.InstallationRequestsList;
 import car.database.Userslist;
-import car.database.category_list;
-import car.database.installationDatesList;
+import car.database.CategoryList;
+import car.database.InstallationDatesList;
 import org.example.*;
 
 import java.util.InputMismatchException;
@@ -58,7 +58,7 @@ public class Main {
                                     case 1:
 
                                         while (true) {
-                                            productList = category_list.getProduct();
+                                            productList = CategoryList.getProduct();
                                             Menu.productlist();
 
                                             try {
@@ -119,18 +119,18 @@ public class Main {
                                         break;
                                     case 3:
 
-                                        productList = category_list.getProduct();
+                                        productList = CategoryList.getProduct();
                                         Product.search(productList);
                                         break;
                                     case 4:
-                                        productList = category_list.getProduct();
+                                        productList = CategoryList.getProduct();
 
                                         line();
 
                                         LOGGER.info("\u001b[35mEnter Category Name:\u001b[0m");
                                         String typee = scan.next();
                                         boolean typeExists = false;
-                                        for (Product product : category_list.getProduct()) {
+                                        for (Product product : CategoryList.getProduct()) {
                                             if (product.getType().equals(typee)) {
                                                 Product.removeProductByType(productList, typee);
                                                 Product.viewProducts(productList);
@@ -222,13 +222,13 @@ public class Main {
 
                     while (true) {
                         Menu.customer1();
-                        String open = scan.nextLine();
+                        String open = scan.next();
                         List<Product> p1;
                         switch (open) {
                             case "1":
                                 while (true) {
                                     List<Product> product1;
-                                    product1 = category_list.getProduct();
+                                    product1 = CategoryList.getProduct();
 
                                     LOGGER.info("\u001B[35m--------- Select Product and Quantity To Buy  ---------\u001B[0m");
                                     Product.viewProducts(product1);
@@ -246,14 +246,14 @@ public class Main {
                                         break;
                                     } else {
                                         int selectedProductIndex = selectProduct - 1;
-                                        Customer.Order.PlaceOrder(product1, selectedProductIndex);
+                                        Customer.Order.placeOrder(product1, selectedProductIndex);
                                     }
                                 }
                                 break;
 
                             case "2":
 
-                                p1 = category_list.getProduct();
+                                p1 = CategoryList.getProduct();
                                 Customer.search(p1);
                                 break;
 
@@ -263,7 +263,7 @@ public class Main {
                                 req1 = InstallationRequestsList.getRequest();
 
 
-                                p1 = category_list.getProduct();
+                                p1 = CategoryList.getProduct();
 
                                 for (User user : Userslist.getUsers()) {
                                     if (user.getEmail().equals(email)) {
@@ -372,7 +372,7 @@ public class Main {
                         }
                         else if(open==2){
                             List<InstallerDates> inss;
-                            inss = installationDatesList.getInstaller();
+                            inss = InstallationDatesList.getInstaller();
                             String currentUser;
                             for (User user : Userslist.getUsers()) {
                                 if (user.getEmail().equals(email)) {

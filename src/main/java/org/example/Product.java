@@ -1,6 +1,6 @@
 package org.example;
 
-import car.database.category_list;
+import car.database.CategoryList;
 import project.najah.edu.ErrorMsg;
 import project.najah.edu.Menu;
 
@@ -164,7 +164,7 @@ public class Product {
     }
     public static void updateByNum(int pnum) {
 
-            List<Product> productList = category_list.getProduct();
+            List<Product> productList = CategoryList.getProduct();
             LOGGER.info(LINE);
 
             Product updatedProduct = getProductInfo();
@@ -174,11 +174,10 @@ public class Product {
             } else {
                 ErrorMsg.showError4();
             }
-
     }
     public static void updateByName(String pname) {
 
-        List<Product> productList = category_list.getProduct();
+        List<Product> productList = CategoryList.getProduct();
         LOGGER.info(LINE);
 
         Product updatedProduct = getProductInfo();
@@ -224,7 +223,6 @@ public class Product {
         }
         isDeleted = true;
     }
-
     public static void updateProductByNum(List<Product> productList, int numProduct, Product updatedProduct) {
         if (numProduct > 0 && numProduct <= productList.size()) {
             Product productToUpdate = productList.get(numProduct - 1);
@@ -266,7 +264,7 @@ public class Product {
     }
     public static void add(){
         List<Product> productList;
-        productList = category_list.getProduct();
+        productList = CategoryList.getProduct();
 
         LOGGER.info(LINE);
         LOGGER.info("\u001b[35mEnter Categry:\u001b[0m");
@@ -296,7 +294,7 @@ public class Product {
     }
     public static void search(List<Product> productList) {
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
 
         Menu.searchList();
         String select = scan.nextLine();
@@ -315,7 +313,6 @@ public class Product {
                     LOGGER.info("\u001B[35m" + productInfo + "\u001B[0m");
 
                     isExisted = true;
-
                     // Ask if the user wants to buy the product
                     Menu.manageProducts();
                     String choose = scan.nextLine();
@@ -336,7 +333,6 @@ public class Product {
                     // Break out of the loop since the product is found
                 }
             }
-
             if (!isExisted) {
                 LOGGER.info("\u001b[34mProduct not found. Please check the product name and try again.\u001b[0m");
             }

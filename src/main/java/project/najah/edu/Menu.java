@@ -1,6 +1,6 @@
 package project.najah.edu;
 
-import car.database.category_list;
+import car.database.CategoryList;
 import org.example.Product;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class Menu {
 
     public static void productlist(){
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
         LOGGER.info("\u001B[35m--------- Select Product To Update Or Delete ---------\u001B[0m");
         Product.viewProducts(product1);
         String s = "\u001B[35m"+Product.getNumProduct() + "\u001B[35m- Go Back.\u001B[0m";
@@ -54,9 +54,6 @@ public class Menu {
         LOGGER.info("\u001b[35m2- Delete Product\u001b[0m");
         LOGGER.info("\u001b[35m3- Go Back\u001b[0m");
     }
-
-
-
     public static void installer1(){
         LOGGER.info(DASHBOARD);
         LOGGER.info("\u001b[35m1- View Installation Requests.\u001b[0m");

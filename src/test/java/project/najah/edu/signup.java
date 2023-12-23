@@ -12,12 +12,6 @@ public class signup {
     public signup(LoginSteps loginsteps) {
         this.loginsteps =loginsteps;
     }
-    private String username;
-    private String email;
-    private String password;
-    private String location;
-    private String Type;
-    private String phoneNum;
 
 
     @Given("that the user is not signed up")
@@ -28,38 +22,32 @@ LoginSteps.logout();
     }
     @When("email is {string}")
     public void emailIs(String string) {
-        this.email=string;
         // Write code here that turns the phrase above into concrete actions
 
     }
     @When("password is {string}")
     public void passwordIs(String string) {
-        this.password=string;
 
     }
     @When("username is {string}")
     public void usernameIs(String string) {
 
-        this.username=string;
         // Write code here that turns the phrase above into concrete actions
 
     }
     @When("type is {string}")
     public void typeIs(String string) {
-        this.Type=string;
         // Write code here that turns the phrase above into concrete actions
 
     }
     @When("location is {string}")
     public void locationIs(String string) {
-        this.location=string;
         // Write code here that turns the phrase above into concrete actions
 
     }
     @When("phoneNum is {string}")
     public void phoneNumIs(String string) {
         // Write code here that turns the phrase above into concrete actions
-        this.phoneNum=  string;
     }
 
     @Then("the user will sign up and added to userslist")

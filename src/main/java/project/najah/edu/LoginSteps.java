@@ -21,11 +21,10 @@ public class LoginSteps {
         public  static void checkAuth(String email, String password) {
             logout();
 
-            for (User user : Userslist.getAdmins()) {
+            for (User user : Userslist.getUsers()) {
                 if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
                     if (user.getType().equals("Admin"))
                         adminIsLogged = true;
-
                     if (user.getType().equals("Customer"))
                         customerIsLogged = true;
                     if (user.getType().equals("Installer"))

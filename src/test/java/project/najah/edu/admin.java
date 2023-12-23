@@ -1,7 +1,7 @@
 package project.najah.edu;
 
 import car.database.Userslist;
-import car.database.category_list;
+import car.database.CategoryList;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -78,7 +78,7 @@ public class admin {
     public void theProductIsAddedSuccessfully() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> prosuctList;
-        prosuctList = category_list.getProduct();
+        prosuctList = CategoryList.getProduct();
         if (type.isEmpty() || name.isEmpty() || des.isEmpty() || img.isEmpty() || price.isEmpty() || ava.isEmpty()) {
             Product.showError();
         }
@@ -104,7 +104,7 @@ public class admin {
     @Then("the product\\/category is Updated successfully in the list")
     public void the_product_category_is_updated_successfully_in_the_list() {
         List<Product> prosuctList;
-        prosuctList = category_list.getProduct();
+        prosuctList = CategoryList.getProduct();
         if (pnum==null ||type.isEmpty() || name.isEmpty() || des.isEmpty() || img.isEmpty() || price.isEmpty() || ava.isEmpty()) {
             Product.showError();
         }
@@ -124,7 +124,7 @@ public class admin {
     public void the_product_category_is_failed_to_update() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> prosuctList;
-        prosuctList = category_list.getProduct();
+        prosuctList = CategoryList.getProduct();
         if (pnum==null ||type.isEmpty() || name.isEmpty() || des.isEmpty() || img.isEmpty() || price.isEmpty() || ava.isEmpty()) {
             Product.showError();
             assertFalse(Product.isUpdated());
@@ -142,7 +142,7 @@ public class admin {
     public void product_is_failed_to_update_or_delete() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> prosuctList;
-        prosuctList = category_list.getProduct();
+        prosuctList = CategoryList.getProduct();
         if(pnum>prosuctList.size()+1){
             Product.showError2();
             assertFalse(Product.isDeleted()&&Product.isUpdated());
@@ -153,13 +153,11 @@ public class admin {
             Product.removeProductByNum(prosuctList, pnum);
         }
     }
-
-
     @Then("The product is deleted successfully from the list")
     public void the_product_is_deleted_successfully_from_the_list() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> prosuctList;
-        prosuctList = category_list.getProduct();
+        prosuctList = CategoryList.getProduct();
 
         if(pnum>prosuctList.size()+1){
             Product.showError2();
@@ -170,17 +168,13 @@ public class admin {
         assertTrue(Product.isDeleted());
     }
 
-
-
-
-
     @Then("The category is deleted successfully from the list")
     public void the_category_is_deleted_successfully_from_the_list() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> productList;
-        productList = category_list.getProduct();
+        productList = CategoryList.getProduct();
         boolean typeExists = false;
-        for (Product product : category_list.getProduct()) {
+        for (Product product : CategoryList.getProduct()) {
             if (product.getType().equals(cName)) {
 
                 Product.removeProductByType(productList, cName);
@@ -203,9 +197,9 @@ public class admin {
     public void the_category_is_failed_to_delete() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> productList;
-        productList = category_list.getProduct();
+        productList = CategoryList.getProduct();
         boolean typeExists = false;
-        for (Product product : category_list.getProduct()) {
+        for (Product product : CategoryList.getProduct()) {
             if (product.getType().equals(cName)) {
 
                 Product.removeProductByType(productList, cName);
@@ -282,7 +276,7 @@ this.pr=string;
     public void print_all_details_about_this_product() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> productList;
-      productList = category_list.getProduct();
+      productList = CategoryList.getProduct();
         boolean isExisted = false;
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
@@ -310,7 +304,7 @@ this.cat=string;
     public void print_all_products_that_have_the_same_category() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> productList;
-        productList = category_list.getProduct();
+        productList = CategoryList.getProduct();
         boolean isExisted = false;
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);

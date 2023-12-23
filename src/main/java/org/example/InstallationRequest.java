@@ -1,7 +1,7 @@
 package org.example;
 
-import car.database.category_list;
-import car.database.installationDatesList;
+import car.database.CategoryList;
+import car.database.InstallationDatesList;
 
 import java.util.List;
 import java.util.Scanner;
@@ -114,9 +114,9 @@ public class InstallationRequest extends InstallerDates {
 
     public static void requestInstallation(List<InstallationRequest> installationRequests, List<Product> productList, String cn,String cl ,String cp) {
         List<InstallerDates> inss;
-        inss = installationDatesList.getInstaller();
+        inss = InstallationDatesList.getInstaller();
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
 
         Product.viewProducts(product1);
         LOGGER.info("\u001B[33mEnter Product Name for Installation Request:\u001B[0m");

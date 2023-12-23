@@ -2,7 +2,7 @@ package project.najah.edu;
 
 import car.database.InstallationRequestsList;
 import car.database.Userslist;
-import car.database.installationDatesList;
+import car.database.InstallationDatesList;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -87,7 +87,7 @@ private  String select;
     public void theNewAppointmentAddedSuccsesfully() {
 boolean isAdded=false;
         List<InstallerDates> inss;
-        inss = installationDatesList.getInstaller();
+        inss = InstallationDatesList.getInstaller();
         LoginSteps.checkAuth(current, password);
         if (LoginSteps.isCustomerIsLogged()){
         String currentUser;

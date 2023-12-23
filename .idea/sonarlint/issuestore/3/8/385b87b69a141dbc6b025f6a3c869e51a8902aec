@@ -3,7 +3,7 @@ i
 java:S1192…"KDefine a constant instead of duplicating this literal "\u001B[35m" 3 times.(¡µÊ·8Ğ¨Ø¶É1
 h
 java:S1192…"JDefine a constant instead of duplicating this literal "\u001B[0m" 3 times.(¡µÊ·8Ô¨Ø¶É1
-{	java:S135µ"YReduce the total number of break and continue statements in this loop to use at most one.(ÈÉèıÿÿÿÿ8Ô¨Ø¶É1
+{	java:S135³"YReduce the total number of break and continue statements in this loop to use at most one.(ÈÉèıÿÿÿÿ8Ô¨Ø¶É1
 p
 java:S1104 "SMake isAdded a static final constant or non-public and provide accessors if needed.(…Ñë·8Õ¨Ø¶É1
 r
@@ -23,12 +23,12 @@ java:S1444&"1Make this "public static isDisplayed" field final(»’Óìûÿÿÿÿ8Õ¨Ø¶É
 U
 java:S2629…"7Use the built-in formatting to construct this argument.(¡µÊ·8Õ¨Ø¶É1
 Z
-java:S2629»"7Use the built-in formatting to construct this argument.(ææéÆúÿÿÿÿ8Ö¨Ø¶É1
+java:S2629¹"7Use the built-in formatting to construct this argument.(ææéÆúÿÿÿÿ8Ö¨Ø¶É1
 Z
-java:S2629ä"7Use the built-in formatting to construct this argument.(ææéÆúÿÿÿÿ8Ö¨Ø¶É1
+java:S2629à"7Use the built-in formatting to construct this argument.(ææéÆúÿÿÿÿ8Ö¨Ø¶É1
 p
-java:S3776©"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(¸ìÜî8ô¨Ø¶É1
+java:S3776§"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(¸ìÜî8ô¨Ø¶É1
 9
-java:S3626ú"Remove this redundant jump.(ûÁİ…8ô¨Ø¶É1
+java:S3626ö"Remove this redundant jump.(ûÁİ…8ô¨Ø¶É1
 ä
-java:S6541©"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 69 to 64, Complexity from 15 to 14, Nesting Level from 4 to 2, Number of Variables from 15 to 6.(¸ìÜî8ù¨Ø¶É1
+java:S6541§"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 69 to 64, Complexity from 15 to 14, Nesting Level from 4 to 2, Number of Variables from 15 to 6.(¸ìÜî8ù¨Ø¶É1

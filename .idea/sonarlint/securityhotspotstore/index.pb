@@ -274,3 +274,9 @@ Q.idea/sonarlint/securityhotspotstore/4/c/4cff09d1e3cfc3f440abb1a9605d1dab50f6d2
 Q.idea/sonarlint/securityhotspotstore/2/4/24aaa53bce8b83aa61aca74d6aebf1714c2cdb21,d\6\d68d5223edab612a2ba8c4ad18dc267376933953
 7
 car.iml,5\c\5c1874c4ca913aa9529ed2328a5ac138f8084d39
+J
+.github/workflows/main.yml,c\7\c778226b6c4c0fb51cf7942c8ee1f3d9fc1249d0
+e
+5src/main/java/car/database/InstallationDatesList.java,2\8\28e1e9646b651ed48146af99e057acd650a58eb0
+\
+,src/main/java/car/database/CategoryList.java,7\0\70f32da49f3e62fead2cb6c69ab46eec589ff7f6
