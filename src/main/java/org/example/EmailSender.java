@@ -13,8 +13,7 @@ public class EmailSender {
     private static boolean isSented=false;
 
     public static void sendEmail(String from, String to, String subject, String messageText) {
-
-        try {
+        
             Properties properties = System.getProperties();
             properties.put("mail.smtp.host", "smtp.gmail.com");
             properties.put("mail.smtp.port", "587");
@@ -36,9 +35,7 @@ public class EmailSender {
             message.setSubject(subject);
             message.setText(messageText);
             Transport.send(message);
-        } catch (MessagingException m) {
-            m.printStackTrace();
-        }
+        
         isSented=true;
 
     }
