@@ -1,0 +1,35 @@
+name: GitHup Actions Maven Build Example
+on:
+  push:
+      branches: [ master]
+jobs:
+
+ build-on-ubuntu:
+         
+   runs-on: ubuntu-latest
+   steps:
+    - name: Step1- checkout main branch from GitHup
+      uses: actions/checkout@v2
+
+    - name: Step2 - Set uo JDK 11.1  
+      uses: action/setup-java@v1
+      with:
+       java-version: 11.1
+
+    - name: Step3 - Build Maven Project 
+      run: mvn --batch-mode -DskipTests package 
+
+    - name: Step4 - run test cases
+      run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
+
+  
+
+
+
+
+
+
+
+
+
+    
