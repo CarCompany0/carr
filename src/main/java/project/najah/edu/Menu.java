@@ -4,14 +4,11 @@ import car.database.category_list;
 import org.example.Product;
 
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Logger;
 public class Menu {
     private static final String HEAD = "\u001b[35m--------------- Welcome To Car Accessories Company -------------------\u001b[0m";
     private static final String DASHBOARD = "\u001b[35m--------------- Dashboard -------------------\u001b[0m";
-    private static final String LINE = "\u001b[35m--------------------------------------------\u001b[0m";
     private static final Logger LOGGER = Logger.getLogger(Menu.class.getName());
-    private static final Scanner scan = new Scanner(System.in);
 
     public static void start (){
         LOGGER.info(HEAD);

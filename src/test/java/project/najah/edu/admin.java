@@ -114,9 +114,6 @@ public class admin {
             assertTrue(Product.isUpdated());
         }
     }
-
-
-
     @When("Category name {string}")
     public void category_name(String string) {
         // Write code here that turns the phrase above into concrete actions
