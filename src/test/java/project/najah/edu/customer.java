@@ -19,6 +19,11 @@ public class customer {
     private static final Logger LOGGER = Logger.getLogger(customer.class.getName());
 
     LoginSteps loginsteps;
+    Customer customer;
+
+    public customer(LoginSteps loginsteps) {
+        this.loginsteps =loginsteps;
+    }
 
     private  String selectProduct;
     private int selectProduct2;
