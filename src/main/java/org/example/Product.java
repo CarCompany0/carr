@@ -58,23 +58,6 @@ public class Product {
         LOGGER.info("\u001B[34mInvalid product index \u001B[0m");
     }
 
-    public static boolean isDisplayed() {
-        return isDisplayed;
-    }
-
-    public static boolean isAdded() {
-        return isAdded;
-    }
-
-    public static boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public static boolean isUpdated() {
-        return isUpdated;
-    }
-
-
     public String getType() {
         return type;
     }

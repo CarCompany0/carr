@@ -20,8 +20,6 @@ public class InstallationRequest extends InstallerDates {
     private  static boolean isSented=false;
     private static boolean  isRequsted=false;
 
-
-
     private static boolean isAppers=false;
     private static  String productName;
     public static boolean isRequsted() {
@@ -35,7 +33,7 @@ public class InstallationRequest extends InstallerDates {
     }
 
     public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+        InstallationRequest.customerName = customerName;
     }
 
     public String getCustomerLocation() {
@@ -43,7 +41,7 @@ public class InstallationRequest extends InstallerDates {
     }
 
     public void setCustomerLocation(String customerLocation) {
-        this.customerLocation = customerLocation;
+        InstallationRequest.customerLocation = customerLocation;
     }
 
     public String getCustomerPhoneNum() {
@@ -51,7 +49,7 @@ public class InstallationRequest extends InstallerDates {
     }
 
     public void setCustomerPhoneNum(String customerPhoneNum) {
-        this.customerPhoneNum = customerPhoneNum;
+        InstallationRequest.customerPhoneNum = customerPhoneNum;
     }
 
     private static String customerName;
@@ -150,7 +148,7 @@ public class InstallationRequest extends InstallerDates {
 
             isRequsted=true;
         LOGGER.info("\u001B[32mInstallation request added successfully.\u001B[0m");
-            newRequest.sendEmailNotification();
+            InstallationRequest.sendEmailNotification();
 
     }
        else LOGGER.warning("\u001B[34mInvalid Date index \u001B[0m" );
