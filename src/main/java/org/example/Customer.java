@@ -47,7 +47,6 @@ public class Customer extends User {
             for (Order order : oL.getOrderList()) {
                 LOGGER.info("\u001b[35m" + i + "- " + " Product name: " + order.product.getName() + "  " +
                         "Quantity: " + order.quantity + "  " + "Order Total: " + order.getTotalPrice() + " $\u001b[0m");
-
                 i++;
             }
             isViewed = true;
