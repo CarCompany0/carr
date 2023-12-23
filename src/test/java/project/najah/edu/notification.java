@@ -98,10 +98,6 @@ public class notification {
 
     }
 
-
-
-
-
     @When("the  customer  current email is {string}")
     public void the_customer_current_email_is(String string) {
         // Write code here that turns the phrase above into concrete actions

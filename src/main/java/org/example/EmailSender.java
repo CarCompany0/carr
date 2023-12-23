@@ -36,7 +36,7 @@ public class EmailSender {
             message.setText(messageText);
             Transport.send(message);
         } catch (MessagingException m) {
-            ErrorMsg.showWarning();
+            ErrorMsg.showError();
         }
         isSented=true;
 
