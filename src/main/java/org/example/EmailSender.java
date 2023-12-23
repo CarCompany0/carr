@@ -28,9 +28,7 @@ public class EmailSender {
                     return new PasswordAuthentication("lemarizeq@gmail.com", "qzsc udyi wacx pknu");
                 }
             }
-
             );
-
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to, false));
@@ -38,7 +36,7 @@ public class EmailSender {
             message.setText(messageText);
             Transport.send(message);
         } catch (MessagingException m) {
-            ErrorMsg.showError();
+            ErrorMsg.showWarning();
         }
         isSented=true;
 

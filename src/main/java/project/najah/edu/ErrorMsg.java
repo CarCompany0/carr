@@ -16,7 +16,6 @@ public static void showError3() {
         LOGGER.info("\u001B[34memail is used,Try with another email\u001B[0m");
         }
 public static void showError4() {LOGGER.info("\u001B[34mPlease fill all fields\u001B[0m");}
- public static void showError5() {LOGGER.info("\u001B[34mInvalid input ,please try again\u001B[0m");}
     public static void showWarning(){LOGGER.warning("Invalid input. Please enter a valid option.");}
     public static void passWarning(){LOGGER.info("\u001B[34mWarning: Password must contain only digits and have a length of 5 or more.\u001B[0m");}
 
