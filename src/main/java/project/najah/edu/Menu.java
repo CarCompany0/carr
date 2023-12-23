@@ -6,9 +6,6 @@ import org.example.Product;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
-
-
-
 public class Menu {
     private static final String HEAD = "\u001b[35m--------------- Welcome To Car Accessories Company -------------------\u001b[0m";
     private static final String DASHBOARD = "\u001b[35m--------------- Dashboard -------------------\u001b[0m";
@@ -61,36 +58,7 @@ public class Menu {
         LOGGER.info("\u001b[35m3- Go Back\u001b[0m");
     }
 
-    public static void add(){
-        List<Product> productList;
-        productList = category_list.getProduct();
 
-        LOGGER.info(LINE);
-        LOGGER.info("\u001b[35mEnter Categry:\u001b[0m");
-        String cat = scan.next();
-
-        LOGGER.info("\u001b[35mEnter Product Name:\u001b[0m");
-        String namee = scan.next();
-
-        LOGGER.info("\u001b[35mEnter Description:\u001b[0m");
-        String dess = scan.next();
-
-        LOGGER.info("\u001b[35mEnter Image:\u001b[0m");
-        String imgg = scan.next();
-
-        LOGGER.info("\u001b[35mEnter Price:\u001b[0m");
-        String pr = scan.next();
-
-        LOGGER.info("\u001b[35mIs it available? (true/false):\u001b[0m");
-        String avv = scan.next();
-
-        if (cat.isEmpty() || namee.isEmpty() || dess.isEmpty() || imgg.isEmpty() || pr.isEmpty() || avv.isEmpty()) {
-            ErrorMsg.showError4();
-        }
-        // Call the updateUserByNum method with the desired user number and new information
-        Product.addProduct(productList, cat,namee,dess,imgg,pr,avv);
-        Product.viewProducts(productList);
-    }
 
     public static void installer1(){
         LOGGER.info(DASHBOARD);

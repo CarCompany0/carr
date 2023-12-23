@@ -114,7 +114,7 @@ public class Main {
                                         }
                                         break;
                                     case 2:
-                                        Menu.add();
+                                        Product.add();
                                         // Display the updated user list
                                         break;
                                     case 3:

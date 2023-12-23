@@ -200,7 +200,6 @@ public class Product {
         }
 
     }
-
     public static void removeProductByType(List<Product> productList, String typeToRemove) {
         // Iterate through the productList in reverse order to avoid concurrent modification issues
         productList.removeIf(product -> product.getType().equalsIgnoreCase(typeToRemove));
@@ -208,8 +207,6 @@ public class Product {
                 LOGGER.info("\u001B[32mCategory Deleted successfully.\u001B[0m");
         isDeleted = true;
             }
-            
-
     public static void removeProductByName(List<Product> productList, String nameToRemove) {
         // Iterate through the productList in reverse order to avoid concurrent modification issues
 
@@ -258,17 +255,44 @@ public class Product {
             }
         }
     }
-
     public static void addProduct(List<Product> productList, String newType, String newName, String newDes,
                                   String newImg, String newPrice, String newAva) {
         // Create a new Product with the provided information
         Product newProduct = new Product(newType, newName, newDes, newImg, newPrice, Boolean.parseBoolean(newAva));
-
         // Add the new product to the productList
         productList.add(newProduct);
         isAdded=true;
-
         LOGGER.info("\u001B[32mProduct Added successfully.\u001B[0m");
+    }
+    public static void add(){
+        List<Product> productList;
+        productList = category_list.getProduct();
+
+        LOGGER.info(LINE);
+        LOGGER.info("\u001b[35mEnter Categry:\u001b[0m");
+        String cat = scan.next();
+
+        LOGGER.info("\u001b[35mEnter Product Name:\u001b[0m");
+        String namee = scan.next();
+
+        LOGGER.info("\u001b[35mEnter Description:\u001b[0m");
+        String dess = scan.next();
+
+        LOGGER.info("\u001b[35mEnter Image:\u001b[0m");
+        String imgg = scan.next();
+
+        LOGGER.info("\u001b[35mEnter Price:\u001b[0m");
+        String pr = scan.next();
+
+        LOGGER.info("\u001b[35mIs it available? (true/false):\u001b[0m");
+        String avv = scan.next();
+
+        if (cat.isEmpty() || namee.isEmpty() || dess.isEmpty() || imgg.isEmpty() || pr.isEmpty() || avv.isEmpty()) {
+            ErrorMsg.showError4();
+        }
+        // Call the updateUserByNum method with the desired user number and new information
+        Product.addProduct(productList, cat,namee,dess,imgg,pr,avv);
+        Product.viewProducts(productList);
     }
     public static void search(List<Product> productList) {
         List<Product> product1;
