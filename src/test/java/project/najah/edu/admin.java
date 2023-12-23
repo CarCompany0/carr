@@ -1,7 +1,8 @@
 package project.najah.edu;
 
-import car.database.Userslist;
 import car.database.CategoryList;
+import car.database.Userslist;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -71,7 +72,7 @@ public class admin {
     @When("availablity is {string}")
     public void availablity_is(String string) {
         // Write code here that turns the phrase above into concrete actions
-        this.ava=string;
+        this.ava= string;
     }
 
     @Then("The product is added successfully")
@@ -100,6 +101,16 @@ public class admin {
         // Write code here that turns the phrase above into concrete actions
         this.pnum=Integer.parseInt(string);
     }
+    @Then("the product\\/category is failed to Update")
+    public void the_product_category_is_failed_to_update() {
+        // Write code here that turns the phrase above into concrete actions
+        if (type.isEmpty() || name.isEmpty() || des.isEmpty() || img.isEmpty() || price.isEmpty() || ava.isEmpty()) {
+            Product.showError();
+            assertFalse(Product.isUpdated());
+        }
+
+
+    }
 
     @Then("the product\\/category is Updated successfully in the list")
     public void the_product_category_is_updated_successfully_in_the_list() {
@@ -109,8 +120,9 @@ public class admin {
             Product.showError();
         }
         else {
-
-            Product.updateProductByNum(prosuctList, pnum, type, name, des, img, price, ava);
+            boolean av = Boolean.parseBoolean(ava);
+            Product product=new Product(type,name,des,img,price,av);
+            Product.updateProductByNum(prosuctList, pnum,product);
             assertTrue(Product.isUpdated());
         }
     }
@@ -120,22 +132,7 @@ public class admin {
         this.cName=string;
     }
 
-    @Then("the product\\/category is failed to Update")
-    public void the_product_category_is_failed_to_update() {
-        // Write code here that turns the phrase above into concrete actions
-        List<Product> prosuctList;
-        prosuctList = CategoryList.getProduct();
-        if (pnum==null ||type.isEmpty() || name.isEmpty() || des.isEmpty() || img.isEmpty() || price.isEmpty() || ava.isEmpty()) {
-            Product.showError();
-            assertFalse(Product.isUpdated());
 
-        }
-        else {
-            Product.updateProductByNum(prosuctList, pnum, type, name, des, img, price, ava);
-
-        }
-
-    }
 
 
     @Then("product is failed to Update or delete")
@@ -149,10 +146,14 @@ public class admin {
 
         }
         else{
-            Product.updateProductByNum(prosuctList, pnum, type, name, des, img, price, ava);
+            boolean av = Boolean.parseBoolean(ava);
+            Product product=new Product(type,name,des,img,price,av);
+            Product.updateProductByNum(prosuctList, pnum,product);
             Product.removeProductByNum(prosuctList, pnum);
         }
     }
+
+
     @Then("The product is deleted successfully from the list")
     public void the_product_is_deleted_successfully_from_the_list() {
         // Write code here that turns the phrase above into concrete actions
@@ -167,6 +168,10 @@ public class admin {
             Product.removeProductByNum(prosuctList, pnum);
         assertTrue(Product.isDeleted());
     }
+
+
+
+
 
     @Then("The category is deleted successfully from the list")
     public void the_category_is_deleted_successfully_from_the_list() {
@@ -269,14 +274,14 @@ public class admin {
     @When("The customer enter the name of product is {string}")
     public void the_customer_enter_the_name_of_product_is(String string) {
         // Write code here that turns the phrase above into concrete actions
-this.pr=string;
+        this.pr=string;
     }
 
     @Then("print all details about this product")
     public void print_all_details_about_this_product() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> productList;
-      productList = CategoryList.getProduct();
+        productList = CategoryList.getProduct();
         boolean isExisted = false;
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
@@ -297,7 +302,7 @@ this.pr=string;
     @When("The customer enter the name of Category {string}")
     public void the_customer_enter_the_name_of_category(String string) {
         // Write code here that turns the phrase above into concrete actions
-this.cat=string;
+        this.cat=string;
     }
 
     @Then("print all products that have the same category")

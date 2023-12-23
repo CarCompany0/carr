@@ -28,6 +28,20 @@ Feature: Admin tasks
       | type       | name   | des   | image | price | availablity |
       | 'Interior' | 'name' | 'des' | 'url' | '50$' | ''          |
 
+  Scenario Outline: fail to update product/category due to left blanks
+    Given that the user is an admin
+    When Product num <numProduct>
+    When the type is <type>
+    And the name is <name>
+    And the des is <des>
+    And the image is <image>
+    And the price is <price>
+    And availablity is <availablity>
+    Then the product/category is failed to Update
+    Examples:
+      | numProduct | type | name | des   | image | price | availablity |
+      | '3'        | ''   | ''   | 'des' | ''    | '50$' | 'true'      |
+
   Scenario Outline: update product/category
     Given that the user is an admin
     When Product num <numProduct>
@@ -42,19 +56,7 @@ Feature: Admin tasks
       | numProduct | type       | name   | des   | image | price | availablity |
       | '2'        | 'Interior' | 'name' | 'des' | 'url' | '50$' | 'true'      |
 
-  Scenario Outline: fail to update product/category due to left blanks
-    Given that the user is an admin
-    When Product num <numProduct>
-    When the type is <type>
-    And the name is <name>
-    And the des is <des>
-    And the image is <image>
-    And the price is <price>
-    And availablity is <availablity>
-    Then the product/category is failed to Update
-    Examples:
-      | numProduct | type | name   | des   | image | price | availablity |
-      | '2'        | ' '  | 'name' | 'des' | ' '   | '50$' | 'true'      |
+
 
 
   Scenario Outline:  admin enter wrong product number to update/delete product
@@ -63,7 +65,7 @@ Feature: Admin tasks
     Then product is failed to Update or delete
     Examples:
       | numProduct |
-      | '7'        |
+      | '10'       |
 
   Scenario Outline: An admin deletes products
     Given that the user is an admin

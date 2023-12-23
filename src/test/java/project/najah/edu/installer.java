@@ -11,12 +11,15 @@ import org.example.InstallerDates;
 import org.example.User;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.assertTrue;
 
 public class installer {
+    private static final Logger LOGGER = Logger.getLogger(customer.class.getName());
+
     LoginSteps loginsteps;
-private  String select;
+    private  String select;
     private  String day;
     private  String mounth;
     private  String year;
@@ -85,22 +88,27 @@ private  String select;
     }
     @Then("The new appointment Added succsesfully")
     public void theNewAppointmentAddedSuccsesfully() {
-boolean isAdded=false;
+        boolean isAdded=false;
         List<InstallerDates> inss;
         inss = InstallationDatesList.getInstaller();
         LoginSteps.checkAuth(current, password);
         if (LoginSteps.isCustomerIsLogged()){
-        String currentUser;
-        for (User user : Userslist.getUsers()) {
-            if (user.getEmail().equals(current)) {
-                currentUser = user.getUsername();
-                isAdded=true;
-                InstallerDates.addDate(inss,currentUser);
-            }
-        }
-        InstallerDates.viewDates(inss);
-            assertTrue(isAdded);
+            String currentUser;
+            for (User user : Userslist.getUsers()) {
+                if (user.getEmail().equals(current)) {
+                    currentUser = user.getUsername();
+                    isAdded=true;
+                    InstallerDates newDate = new InstallerDates(day, mounth, year, hour, currentUser);
 
+                    // Add the new product to the productList
+                    inss.add(newDate);
+
+
+                }
+            }
+            LOGGER.info("\u001B[32mDate Added successfully.\u001B[0m");
+            InstallerDates.viewDates(inss);
+            assertTrue(isAdded);
         }
 
     }

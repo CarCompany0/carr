@@ -19,15 +19,10 @@ public class customer {
     private static final Logger LOGGER = Logger.getLogger(customer.class.getName());
 
     LoginSteps loginsteps;
-    Customer customer;
-
-    public customer(LoginSteps loginsteps) {
-        this.loginsteps =loginsteps;
-    }
 
     private  String selectProduct;
     private int selectProduct2;
-private String pname;
+    private String pname;
     private  String email;
     private  String select;
     private  int selectedDateIndex;
@@ -50,7 +45,7 @@ private String pname;
     @When("The customer enters product number {string}")
     public void the_customer_enters_product_number(String string) {
 
-    this.selectProduct2=Integer.parseInt(string);
+        this.selectProduct2=Integer.parseInt(string);
     }
     @When("The customer enters product name {string}")
     public void the_customer_enters_product_name(String string) {
@@ -60,13 +55,13 @@ private String pname;
     @When("the customer  enters {string} of the quantity of that accessories")
     public void the_customer_enters_of_the_quantity_of_that_accessories(String string) {
         // Write code here that turns the phrase above into concrete actions
-     this.quantity=Integer.parseInt(string);
+        this.quantity=Integer.parseInt(string);
     }
 
     @When("the Availabelity is {string}")
     public void the_availabelity_is(String string) {
         // Write code here that turns the phrase above into concrete actions
-      this.available=Boolean.parseBoolean(string);
+        this.available=Boolean.parseBoolean(string);
     }
 
     @Then("the Customer buys it succsesfully")
@@ -84,22 +79,22 @@ private String pname;
         if (selectedProductIndex >= 0 && selectedProductIndex < product1.size()) {
 
             Product selectedProduct = product1.get(selectedProductIndex);
-     if(available==false){
-         isBouught=false;
-         LOGGER.info("\u001b[35mThe Product Out Of Stock\u001b[0m");
-     } else{
+            if(available==false){
+                isBouught=false;
+                LOGGER.info("\u001b[35mThe Product Out Of Stock\u001b[0m");
+            } else{
 
 
-         LOGGER.info("\u001b[35mYou have selected: \u001b[35m" + quantity + "\u001b[35m of \u001b[35m" + selectedProduct.getName() + " " + selectedProduct.getPrice() +"$"+ "\u001b[0m");
+                LOGGER.info("\u001b[35mYou have selected: \u001b[35m" + quantity + "\u001b[35m of \u001b[35m" + selectedProduct.getName() + " " + selectedProduct.getPrice() +"$"+ "\u001b[0m");
 
-         Customer.Order newOrder = new Customer.Order(selectedProduct, quantity);
-         cus.oL.addOrder(newOrder);
-         isBouught=true;
-         LOGGER.info("\u001b[35mOrder Added Successfully To Cart \u001b[0m"); //+ User.getUsername()
+                Customer.Order newOrder = new Customer.Order(selectedProduct, quantity);
+                cus.oL.addOrder(newOrder);
+                isBouught=true;
+                LOGGER.info("\u001b[35mOrder Added Successfully To Cart \u001b[0m"); //+ User.getUsername()
 
-     }
-     assertTrue(isBouught);
-     }
+            }
+            assertTrue(isBouught);
+        }
     }
 
 
@@ -185,27 +180,27 @@ private String pname;
     @When("the new customer  username {string}")
     public void the_new_customer_username(String string) {
         // Write code here that turns the phrase above into concrete actions
-this.username=string;
+        this.username=string;
     }
     @When("the new customer  email {string}")
     public void the_new_customer_email(String string) {
         // Write code here that turns the phrase above into concrete actions
-this.email=string;
+        this.email=string;
     }
     @When("the new customer  password {string}")
     public void the_new_customer_password(String string) {
         // Write code here that turns the phrase above into concrete actions
-this.password=string;
+        this.password=string;
     }
     @When("the new customer  location {string}")
     public void the_new_customer_location(String string) {
         // Write code here that turns the phrase above into concrete actions
-this.location=string;
+        this.location=string;
     }
     @When("the new customer  phonenumber {string}")
     public void the_new_customer_phonenumber(String string) {
         // Write code here that turns the phrase above into concrete actions
-this.phoneNum=string;
+        this.phoneNum=string;
     }
 
 
@@ -215,17 +210,17 @@ this.phoneNum=string;
         LoginSteps.checkAuth(curente, pass);
         if (LoginSteps.isCustomerIsLogged()){
 
-        User currentUser = null;
-        for (User user : Userslist.getUsers()) {
-            if (user.getPassword().equals(pass)) {
-                currentUser = user;
-                break;
+            User currentUser = null;
+            for (User user : Userslist.getUsers()) {
+                if (user.getPassword().equals(pass)) {
+                    currentUser = user;
+                    break;
+                }
             }
-        }
             if (currentUser != null){
 
                 if (username.isEmpty() || email.isEmpty() || password.isEmpty() || location.isEmpty()|| phoneNum.isEmpty()) {
-                   Product.showError();
+                    Product.showError();
                 }
                 if (!User.isValidEmail(email)) {
                     LOGGER.info("\u001B[35mInvalid email format. Please enter a valid email address.\u001B[0m");
@@ -262,7 +257,7 @@ this.phoneNum=string;
                         LOGGER.info("\u001B[35mWarning: Password must contain only digits and have a length of 5 or more.\u001B[0m");
                         //   break;
                     }
-        }}}}
+                }}}}
     @Then("The information failed to update")
     public void the_information_failed_to_update() {
         // Write code here that turns the phrase above into concrete actions
@@ -323,14 +318,17 @@ this.phoneNum=string;
                         //   break;
                     }
                 }}}
-     }
+    }
 
 
     @Given("the installer date {string}")
     public void the_installer_date(String string) {
         // Write code here that turns the phrase above into concrete actions
         this.selectedDateIndex = Integer.parseInt(string) - 1;
-        }
+        List<InstallerDates> inss;
+        inss = InstallationDatesList.getInstaller();
+        InstallerDates.viewDates(inss);
+    }
     @Then("The installation will be requested")
     public void the_installation_will_be_requested() {
         boolean isRequsted=false;
@@ -359,29 +357,29 @@ this.phoneNum=string;
         }
         LoginSteps.checkAuth(curente, pass);
         if (LoginSteps.isCustomerIsLogged()){
-        User currentUser = null;
-        for (User user : Userslist.getUsers()) {
-            if (user.getEmail().equals(curente)) {
-                currentUser = user;
-                break;
-            }}
+            User currentUser = null;
+            for (User user : Userslist.getUsers()) {
+                if (user.getEmail().equals(curente)) {
+                    currentUser = user;
+                    break;
+                }}
 
             if (currentUser != null) {
-        if (selectedDateIndex >= 0 && selectedDateIndex < inss.size()) {
-            InstallerDates selectedInstallerDate = inss.get(selectedDateIndex);
+                if (selectedDateIndex >= 0 && selectedDateIndex < inss.size()) {
+                    InstallerDates selectedInstallerDate = inss.get(selectedDateIndex);
 
-            InstallationRequest newRequest = new InstallationRequest(selectedInstallerDate.getDay(), selectedInstallerDate.getMonth(),
-                    selectedInstallerDate.getYear(), selectedInstallerDate.getHour(), selectedInstallerDate.getInstallerName(),
-                    selectProduct, currentUser.getUsername(), currentUser.getLocation(), currentUser.getPhoneNum());
-            req1.add(newRequest);
-            isRequsted = true;
-            LOGGER.info("\u001B[32mInstallation request added successfully.\u001B[0m");
-            assertTrue(isRequsted);
+                    InstallationRequest newRequest = new InstallationRequest(selectedInstallerDate.getDay(), selectedInstallerDate.getMonth(),
+                            selectedInstallerDate.getYear(), selectedInstallerDate.getHour(), selectedInstallerDate.getInstallerName(),
+                            selectProduct, currentUser.getUsername(), currentUser.getLocation(), currentUser.getPhoneNum());
+                    req1.add(newRequest);
+                    isRequsted = true;
+                    LOGGER.info("\u001B[32mInstallation request added successfully.\u001B[0m");
+                    assertTrue(isRequsted);
+                }
+            }
         }
-            }
-            }
 
-        }
+    }
     @When("The customer enter the name of product {string}")
     public void the_customer_enter_the_name_of_product(String string) {
         // Write code here that turns the phrase above into concrete actions
@@ -395,7 +393,7 @@ this.phoneNum=string;
         product1 = CategoryList.getProduct();
 
 
-       boolean isExisted=false;
+        boolean isExisted=false;
 
         for (int i = 0; i < product1.size(); i++) {
             Product product = product1.get(i);
