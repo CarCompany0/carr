@@ -21,7 +21,7 @@ public class CategoryList {
         p_listing.add(new Product(EXTERIOR, "camera","des","url","100",false));
         p_listing.add(new Product(EXTERIOR, "LED headlights","des","url","120",true));
         p_listing.add(new Product(EXTERIOR, "Wheel locks","des","url","50",false));
-        p_listing.add(new Product(ELECTRONICS, "tint","des","url", "99",false));
+        p_listing.add(new Product(ELECTRONICS, "tint","des","url", "99",true));
         p_listing.add(new Product(ELECTRONICS, "Remote car starters","des","url", "88",true));
         p_listing.add(new Product(ELECTRONICS, "Parking sensors","des","url", "50",true));
 
