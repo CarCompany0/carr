@@ -49,7 +49,6 @@
             </plugins>
         </pluginManagement>
     </build>
-
     <dependencies>
         <dependency>
             <groupId>io.cucumber</groupId>
