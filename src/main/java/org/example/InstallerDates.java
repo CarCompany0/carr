@@ -60,7 +60,6 @@ public class InstallerDates {
         this.hour = hour;
         this.installerName = installerName;
     }
-
     public static void addDate(List<InstallerDates> installerDatesList, String namee) {
 
         // Create a new Product with the provided information
@@ -87,10 +86,7 @@ public class InstallerDates {
         // Add the new product to the productList
         installerDatesList.add(newDate);
         LOGGER.info("\u001B[32mDate Added successfully.\u001B[0m");
-
-
     }
-
     public static void viewDates(List<InstallerDates> installerDatesList) {
         int x = 1;
 
