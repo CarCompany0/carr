@@ -1,8 +1,7 @@
 package project.najah.edu;
 
-import car.database.CategoryList;
 import car.database.Userslist;
-
+import car.database.category_list;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,6 +19,8 @@ public class admin {
 
     LoginSteps loginsteps;
     private String pr;
+    private String ch;
+
     private Integer pnum;
     private String type;
     private String img;
@@ -79,7 +80,7 @@ public class admin {
     public void theProductIsAddedSuccessfully() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> prosuctList;
-        prosuctList = CategoryList.getProduct();
+        prosuctList = category_list.getProduct();
         if (type.isEmpty() || name.isEmpty() || des.isEmpty() || img.isEmpty() || price.isEmpty() || ava.isEmpty()) {
             Product.showError();
         }
@@ -115,13 +116,13 @@ public class admin {
     @Then("the product\\/category is Updated successfully in the list")
     public void the_product_category_is_updated_successfully_in_the_list() {
         List<Product> prosuctList;
-        prosuctList = CategoryList.getProduct();
+        prosuctList = category_list.getProduct();
         if (pnum==null ||type.isEmpty() || name.isEmpty() || des.isEmpty() || img.isEmpty() || price.isEmpty() || ava.isEmpty()) {
             Product.showError();
         }
         else {
             boolean av = Boolean.parseBoolean(ava);
-            Product product=new Product(type,name,des,img,price,av);
+Product product=new Product(type,name,des,img,price,av);
             Product.updateProductByNum(prosuctList, pnum,product);
             assertTrue(Product.isUpdated());
         }
@@ -139,7 +140,7 @@ public class admin {
     public void product_is_failed_to_update_or_delete() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> prosuctList;
-        prosuctList = CategoryList.getProduct();
+        prosuctList = category_list.getProduct();
         if(pnum>prosuctList.size()+1){
             Product.showError2();
             assertFalse(Product.isDeleted()&&Product.isUpdated());
@@ -152,13 +153,24 @@ public class admin {
             Product.removeProductByNum(prosuctList, pnum);
         }
     }
-
+    @When("The admin choose to {string}")
+    public void the_admin_choose_to(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        ch=string;
+    }
+    @Then("print all accounts")
+    public void print_all_accounts() {
+        // Write code here that turns the phrase above into concrete actions
+        List<User> users;
+        users = Userslist.getUsers();
+        User.viewAccounts(users);
+    }
 
     @Then("The product is deleted successfully from the list")
     public void the_product_is_deleted_successfully_from_the_list() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> prosuctList;
-        prosuctList = CategoryList.getProduct();
+        prosuctList = category_list.getProduct();
 
         if(pnum>prosuctList.size()+1){
             Product.showError2();
@@ -177,9 +189,9 @@ public class admin {
     public void the_category_is_deleted_successfully_from_the_list() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> productList;
-        productList = CategoryList.getProduct();
+        productList = category_list.getProduct();
         boolean typeExists = false;
-        for (Product product : CategoryList.getProduct()) {
+        for (Product product : category_list.getProduct()) {
             if (product.getType().equals(cName)) {
 
                 Product.removeProductByType(productList, cName);
@@ -202,9 +214,9 @@ public class admin {
     public void the_category_is_failed_to_delete() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> productList;
-        productList = CategoryList.getProduct();
+        productList = category_list.getProduct();
         boolean typeExists = false;
-        for (Product product : CategoryList.getProduct()) {
+        for (Product product : category_list.getProduct()) {
             if (product.getType().equals(cName)) {
 
                 Product.removeProductByType(productList, cName);
@@ -213,12 +225,13 @@ public class admin {
                 typeExists=true;
                 break;
             }
-            else{
-                if(!typeExists)
-                    LOGGER.info("\u001B[35mThe Category Doesn't Exists\u001B[0m");
-                assertFalse(typeExists);
 
-            }
+
+        }
+
+            if(!typeExists){
+                ErrorMsg.showWarning();
+                assertFalse(typeExists);
 
         }
     }
@@ -274,14 +287,14 @@ public class admin {
     @When("The customer enter the name of product is {string}")
     public void the_customer_enter_the_name_of_product_is(String string) {
         // Write code here that turns the phrase above into concrete actions
-        this.pr=string;
+this.pr=string;
     }
 
     @Then("print all details about this product")
     public void print_all_details_about_this_product() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> productList;
-        productList = CategoryList.getProduct();
+      productList = category_list.getProduct();
         boolean isExisted = false;
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
@@ -302,14 +315,14 @@ public class admin {
     @When("The customer enter the name of Category {string}")
     public void the_customer_enter_the_name_of_category(String string) {
         // Write code here that turns the phrase above into concrete actions
-        this.cat=string;
+this.cat=string;
     }
 
     @Then("print all products that have the same category")
     public void print_all_products_that_have_the_same_category() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> productList;
-        productList = CategoryList.getProduct();
+        productList = category_list.getProduct();
         boolean isExisted = false;
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
