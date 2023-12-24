@@ -10,6 +10,9 @@ public class Menu {
     private static final String DASHBOARD = "\u001b[35m--------------- Dashboard -------------------\u001b[0m";
     private static final Logger LOGGER = Logger.getLogger(Menu.class.getName());
 
+    private Menu() {
+        throw new AssertionError("Instantiation not allowed for Menu class.");
+    }
     public static void start (){
         LOGGER.info(HEAD);
         LOGGER.info("\u001b[35m1- Login\u001b[0m");

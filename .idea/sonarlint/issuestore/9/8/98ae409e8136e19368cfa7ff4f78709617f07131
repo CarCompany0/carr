@@ -1,30 +1,22 @@
 
-Y
-java:S2629e"7Use the built-in formatting to construct this argument.(¨ñšışÿÿÿÿ8°»»¾É1
-b	java:S107;"AConstructor has 9 parameters, which is greater than 7 authorized.(â½˜øÿÿÿÿ8Á»»¾É1
-S
-java:S2696$"6Make the enclosing method "static" or remove this set.(ÓüÜ8Æ»»¾É1
-X
-java:S2696,"6Make the enclosing method "static" or remove this set.(ç¶Öÿüÿÿÿÿ8Æ»»¾É1
-X
-java:S26964"6Make the enclosing method "static" or remove this set.(Ó³ëÉøÿÿÿÿ8Ç»»¾É1
+v
+java:S1450"YRemove the "isRequsted" field and declare it as a local variable in the relevant methods.(·ãøĞ8æË—êÉ1
+b	java:S107%"AConstructor has 9 parameters, which is greater than 7 authorized.(â½˜øÿÿÿÿ8çË—êÉ1
 E
-java:S3010>"(Remove this assignment of "productName".(Æ£÷Á8Ç»»¾É1
+java:S3010("(Remove this assignment of "productName".(Æ£÷Á8·êÉ1
 K
-java:S3010?")Remove this assignment of "customerName".(Úóº®ıÿÿÿÿ8Ç»»¾É1
+java:S3010)")Remove this assignment of "customerName".(Úóº®ıÿÿÿÿ8·êÉ1
 J
-java:S3010@"-Remove this assignment of "customerLocation".(×İÆ·8Ç»»¾É1
+java:S3010*"-Remove this assignment of "customerLocation".(×İÆ·8·êÉ1
 J
-java:S3010A"-Remove this assignment of "customerPhoneNum".(¥ÍíÍ8Ç»»¾É1
+java:S3010+"-Remove this assignment of "customerPhoneNum".(¥ÍíÍ8·êÉ1
 R
-java:S2209>"5Change this instance-reference to a static reference.(Æ£÷Á8È»»¾É1
+java:S2209("5Change this instance-reference to a static reference.(Æ£÷Á8¸êÉ1
 W
-java:S2209?"5Change this instance-reference to a static reference.(Úóº®ıÿÿÿÿ8È»»¾É1
+java:S2209)"5Change this instance-reference to a static reference.(Úóº®ıÿÿÿÿ8¸êÉ1
 R
-java:S2209@"5Change this instance-reference to a static reference.(×İÆ·8È»»¾É1
+java:S2209*"5Change this instance-reference to a static reference.(×İÆ·8¸êÉ1
 R
-java:S2209A"5Change this instance-reference to a static reference.(¥ÍíÍ8È»»¾É1
-S
-java:S2696J"6Make the enclosing method "static" or remove this set.(Æ£÷Á8É»»¾É1
-R
-java:S2209J"5Change this instance-reference to a static reference.(Æ£÷Á8É»»¾É1
+java:S2209+"5Change this instance-reference to a static reference.(¥ÍíÍ8¸êÉ1
+K
+java:S1068".Remove this unused "isRequsted" private field.(·ãøĞ8ïË—êÉ1

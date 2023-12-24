@@ -3,7 +3,9 @@ package project.najah.edu;
 import java.util.logging.Logger;
 
 public class ErrorMsg {
-
+    private ErrorMsg() {
+        throw new AssertionError("Instantiation not allowed for ErrorMsg class.");
+    }
     private static final Logger LOGGER = Logger.getLogger(ErrorMsg.class.getName());
     public static void showError() {
         LOGGER.info("\u001B[34mIncorrect Email/Password\u001B[0m");

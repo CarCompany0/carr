@@ -11,7 +11,7 @@ Feature: installer tasks
     Given the user is installer
     And the  customer  email is "saleh@gmail.com"
     And the  customer  pass is "11111"
-    When  the installer choose "schedule appointments"
+    When  the installer choose "2"
     And   the day "03"
     And  the mounth "09"
     And  the year "2023"

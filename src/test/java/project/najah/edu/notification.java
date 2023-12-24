@@ -91,7 +91,7 @@ public class notification {
                 isBouught=true;
                 LOGGER.info("\u001b[35mOrder Added Successfully To Cart \u001b[0m"); //+ User.getUsername()
                 Customer.Order.sendOrderConfirmationEmail(selectedProduct.getName(),qua,newOrder.getTotalPrice());
-                assertTrue(Customer.isIsSented());
+                assertTrue(Customer.isIsSent());
             }
 
         }

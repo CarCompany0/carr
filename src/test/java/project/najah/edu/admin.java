@@ -2,7 +2,6 @@ package project.najah.edu;
 
 import car.database.CategoryList;
 import car.database.Userslist;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,6 +19,8 @@ public class admin {
 
     LoginSteps loginsteps;
     private String pr;
+    private String ch;
+
     private Integer pnum;
     private String type;
     private String img;
@@ -152,7 +153,18 @@ public class admin {
             Product.removeProductByNum(prosuctList, pnum);
         }
     }
-
+    @When("The admin choose to {string}")
+    public void the_admin_choose_to(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        ch=string;
+    }
+    @Then("print all accounts")
+    public void print_all_accounts() {
+        // Write code here that turns the phrase above into concrete actions
+        List<User> users;
+        users = Userslist.getUsers();
+        User.viewAccounts(users);
+    }
 
     @Then("The product is deleted successfully from the list")
     public void the_product_is_deleted_successfully_from_the_list() {
@@ -213,12 +225,13 @@ public class admin {
                 typeExists=true;
                 break;
             }
-            else{
-                if(!typeExists)
-                    LOGGER.info("\u001B[35mThe Category Doesn't Exists\u001B[0m");
-                assertFalse(typeExists);
 
-            }
+
+        }
+
+        if(!typeExists){
+            ErrorMsg.showWarning();
+            assertFalse(typeExists);
 
         }
     }

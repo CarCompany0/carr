@@ -16,6 +16,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class customer {
+    private static final String passRange = "\\d{5,}";
+
     private static final Logger LOGGER = Logger.getLogger(customer.class.getName());
 
     LoginSteps loginsteps;
@@ -67,6 +69,41 @@ public class customer {
     public void the_availabelity_is(String string) {
         // Write code here that turns the phrase above into concrete actions
         this.available=Boolean.parseBoolean(string);
+    }
+    @When("the  customer  email {string}")
+    public void the_customer_email(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        this.curente=string;
+    }
+    @When("the  customer  pass {string}")
+    public void the_customer_pass(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        this.pass=string;
+    }
+    @When("the new customer  username {string}")
+    public void the_new_customer_username(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        this.username=string;
+    }
+    @When("the new customer  email {string}")
+    public void the_new_customer_email(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        this.email=string;
+    }
+    @When("the new customer  password {string}")
+    public void the_new_customer_password(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        this.password=string;
+    }
+    @When("the new customer  location {string}")
+    public void the_new_customer_location(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        this.location=string;
+    }
+    @When("the new customer  phonenumber {string}")
+    public void the_new_customer_phonenumber(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        this.phoneNum=string;
     }
 
     @Then("the Customer buys it succsesfully")
@@ -151,6 +188,7 @@ public class customer {
     public void the_customer_choose(String string) {
         // Write code here that turns the phrase above into concrete actions
         this.select=string;
+
     }
 
     @Then("show the history of his orders")
@@ -159,6 +197,29 @@ public class customer {
         Customer.displayOrders();
 
         assertTrue(Customer.isViewed());
+    }
+    @When("The customer enter the name of product {string}")
+    public void the_customer_enter_the_name_of_product(String string) {
+        // Write code here that turns the phrase above into concrete actions
+
+        this.pname=string;
+    }
+    @Then("print all information about this product")
+    public void print_all_information_about_this_product() {
+        // Write code here that turns the phrase above into concrete actions
+        List<Product> product1;
+        product1 = CategoryList.getProduct();
+        for (int i = 0; i < product1.size(); i++) {
+            Product product = product1.get(i);
+            if (product.getName().equalsIgnoreCase(pname)) {
+                String productInfo = "\u001b[35m"+i + ". " + product.getType() + " , " + product.getName() +
+                        " , " + product.getDescription() + " , " + product.getImage() +
+                        " , " + product.getPrice() + " $ " + " , " + product.isAvailability()+"\u001b[0m";
+                LOGGER.info("\u001B[35m" + productInfo + "\u001B[0m");
+
+            }
+        }
+
     }
 
     @Then("show the product list")
@@ -171,159 +232,115 @@ public class customer {
 
     }
 
-    @When("the  customer  email {string}")
-    public void the_customer_email(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        this.curente=string;
-    }
-    @When("the  customer  pass {string}")
-    public void the_customer_pass(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        this.pass=string;
-    }
 
-    @When("the new customer  username {string}")
-    public void the_new_customer_username(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        this.username=string;
-    }
-    @When("the new customer  email {string}")
-    public void the_new_customer_email(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        this.email=string;
-    }
-    @When("the new customer  password {string}")
-    public void the_new_customer_password(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        this.password=string;
-    }
-    @When("the new customer  location {string}")
-    public void the_new_customer_location(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        this.location=string;
-    }
-    @When("the new customer  phonenumber {string}")
-    public void the_new_customer_phonenumber(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        this.phoneNum=string;
-    }
+
+
 
 
     @Then("The information Succsesfully")
     public void the_information_succsesfully() {
-        boolean isApdated=false;
-        LoginSteps.checkAuth(curente, pass);
-        if (LoginSteps.isCustomerIsLogged()){
+        LoginSteps.checkAuth(email, pass);
 
-            User currentUser = null;
-            for (User user : Userslist.getUsers()) {
-                if (user.getPassword().equals(pass)) {
-                    currentUser = user;
-                    break;
+        User currentUser = null;
+        for (User user : Userslist.getUsers()) {
+            if (user.getEmail().equals(email)) {
+                currentUser = user;
+                break;
+            }
+        }
+
+        if (currentUser != null) {
+
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty() || location.isEmpty() || phoneNum.isEmpty()) {
+                ErrorMsg.showError4();
+            }
+
+            if (!User.isValidEmail(email)) {
+                LOGGER.info("\u001B[34mInvalid email format. Please enter a valid email address.\u001B[0m");
+            }  else {
+                boolean emailExists = false;
+
+                for (User user : Userslist.getUsers()) {
+                    if (!user.getEmail().equals(curente) && user.getEmail().equals(email)) {
+                        LOGGER.info("\u001B[34mEmail already exists. Choose a different email.\u001B[0m");
+                        emailExists = true;
+                        break;
+                    }
+                }
+
+                if (password != null && password.matches(passRange)) {
+                    if (!emailExists) {
+                        currentUser.setUsername(username);
+                        currentUser.setEmail(email);
+                        currentUser.setPassword(password);
+                        currentUser.setLocation(location);
+                        currentUser.setPhoneNum(phoneNum);
+                        currentUser.setType("Customer");
+                        LOGGER.info("\u001B[32minformation Updated Successfully..\u001B[0m");
+                        User.printUserInfo(currentUser);
+                    }
+                } else {
+                    ErrorMsg.passWarning();
                 }
             }
-            if (currentUser != null){
+        } else {
+            LOGGER.warning("\u001B[34mUser not found.\u001B[0m");
+        }
 
-                if (username.isEmpty() || email.isEmpty() || password.isEmpty() || location.isEmpty()|| phoneNum.isEmpty()) {
-                    Product.showError();
-                }
-                if (!User.isValidEmail(email)) {
-                    LOGGER.info("\u001B[35mInvalid email format. Please enter a valid email address.\u001B[0m");
-                } else {
-                    boolean emailExists = false;
+    }
 
-                    for (User user : Userslist.getUsers()) {
-                        if (!user.getEmail().equals(curente)){
-                            if (user.getEmail().equals(email)) {
-                                LOGGER.info("\u001B[35mEmail already exists. Choose a different email.\u001B[0m");
-                                emailExists = true;
-                                break;
-                            }
-                        }
-                    }
 
-                    if (password != null && password.matches("\\d{5,}")) {
-                        // Continue with your logic when the password is valid
-                        if (!emailExists) {
-                            // Proceed with the sign-up process since the email does not exist
-                            currentUser.setUsername(username);
-                            currentUser.setEmail(email);
-                            currentUser.setPassword(password);
-                            currentUser.setLocation(location);
-                            currentUser.setPhoneNum(phoneNum);
-                            currentUser.setType("Customer");
-                            isApdated=true;
-                            assertTrue(isApdated);
-                            LOGGER.info("\u001B[32minformation Updated Successfully..\u001B[0m");
-                            User.printUserInfo(currentUser);
-                        }
 
-                    } else {
-                        LOGGER.info("\u001B[35mWarning: Password must contain only digits and have a length of 5 or more.\u001B[0m");
-                        //   break;
-                    }
-                }}}}
     @Then("The information failed to update")
     public void the_information_failed_to_update() {
         // Write code here that turns the phrase above into concrete actions
-        boolean isApdated=false;
-        LoginSteps.checkAuth(curente, pass);
-        if (LoginSteps.isCustomerIsLogged()){
+        LoginSteps.checkAuth(email, pass);
 
-            User currentUser = null;
-            for (User user : Userslist.getUsers()) {
-                if (user.getPassword().equals(pass)) {
-                    currentUser = user;
-                    break;
+        User currentUser = null;
+        for (User user : Userslist.getUsers()) {
+            if (user.getEmail().equals(email)) {
+                currentUser = user;
+                break;
+            }
+        }
+
+        if (currentUser != null) {
+
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty() || location.isEmpty() || phoneNum.isEmpty()) {
+                ErrorMsg.showError4();
+            }
+
+            else if (!User.isValidEmail(email)) {
+                LOGGER.info("\u001B[34mInvalid email format. Please enter a valid email address.\u001B[0m");
+            }  else {
+                boolean emailExists = false;
+
+                for (User user : Userslist.getUsers()) {
+                    if (!user.getEmail().equals(curente) && user.getEmail().equals(email)) {
+                        ErrorMsg.showError3();
+                        emailExists = true;
+                        break;
+                    }
+                }
+
+                if (password != null && password.matches(passRange)) {
+                    if (!emailExists) {
+                        currentUser.setUsername(username);
+                        currentUser.setEmail(email);
+                        currentUser.setPassword(password);
+                        currentUser.setLocation(location);
+                        currentUser.setPhoneNum(phoneNum);
+                        currentUser.setType("Customer");
+                        LOGGER.info("\u001B[32minformation Updated Successfully..\u001B[0m");
+                        User.printUserInfo(currentUser);
+                    }
+                } else {
+                    ErrorMsg.passWarning();
                 }
             }
-            if (currentUser != null){
-
-                if (username.isEmpty() || email.isEmpty() || password.isEmpty() || location.isEmpty()|| phoneNum.isEmpty()) {
-                    Product.showError();
-                    isApdated=false;
-                }
-                if (!User.isValidEmail(email)) {
-                    isApdated=false;
-                    LOGGER.info("\u001B[35mInvalid email format. Please enter a valid email address.\u001B[0m");
-                } else {
-                    boolean emailExists = false;
-
-                    for (User user : Userslist.getUsers()) {
-                        if (!user.getEmail().equals(curente)){
-                            if (user.getEmail().equals(email)) {
-                                isApdated=false;
-                                assertFalse(isApdated);
-                                LOGGER.info("\u001B[35mEmail already exists. Choose a different email.\u001B[0m");
-                                emailExists = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (password != null && password.matches("\\d{5,}")) {
-                        // Continue with your logic when the password is valid
-                        if (!emailExists) {
-                            // Proceed with the sign-up process since the email does not exist
-                            currentUser.setUsername(username);
-                            currentUser.setEmail(email);
-                            currentUser.setPassword(password);
-                            currentUser.setLocation(location);
-                            currentUser.setPhoneNum(phoneNum);
-                            currentUser.setType("Customer");
-                            isApdated=true;
-
-                            LOGGER.info("\u001B[32minformation Updated Successfully..\u001B[0m");
-                            User.printUserInfo(currentUser);
-                        }
-
-                    } else {
-                        isApdated=false;
-                        LOGGER.info("\u001B[35mWarning: Password must contain only digits and have a length of 5 or more.\u001B[0m");
-                        //   break;
-                    }
-                }}}
-    }
+        } else {
+            LOGGER.warning("\u001B[34mUser not found.\u001B[0m");
+        }}
 
 
     @Given("the installer date {string}")
@@ -385,35 +402,7 @@ public class customer {
         }
 
     }
-    @When("The customer enter the name of product {string}")
-    public void the_customer_enter_the_name_of_product(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        this.pname=string;
 
-    }
-    @Then("print all information about this product")
-    public void print_all_information_about_this_product() {
-        // Write code here that turns the phrase above into concrete actions
-        List<Product> product1;
-        product1 = CategoryList.getProduct();
-
-
-        boolean isExisted=false;
-
-        for (int i = 0; i < product1.size(); i++) {
-            Product product = product1.get(i);
-            if (product.getName().equalsIgnoreCase(pname)) {
-                isExisted = true;
-                assertTrue(isExisted);
-                String productInfo = "\u001b[35m"+i + ". " + product.getType() + " , " + product.getName() +
-                        " , " + product.getDescription() + " , " + product.getImage() +
-                        " , " + product.getPrice() + " $ " + " , " + product.isAvailability()+"\u001b[0m";
-                LOGGER.info("\u001B[35m" + productInfo + "\u001B[0m");
-
-            }
-        }
-
-    }
 }
 
 

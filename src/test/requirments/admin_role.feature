@@ -94,7 +94,6 @@ Feature: Admin tasks
 
   Scenario: update user information.
     Given that the user is an admin
-
     When  usernum "4"
     When the username is "saleh"
     And the location is "india"
@@ -115,6 +114,11 @@ Feature: Admin tasks
     Given  that the user is an admin
     When The customer enter the name of product is "tint"
     Then print all details about this product
+
+  Scenario: can view accounts
+    Given  that the user is an admin
+    When The admin choose to "View Acounts"
+    Then print all accounts
 
   Scenario: can search for Category
     Given  that the user is an admin

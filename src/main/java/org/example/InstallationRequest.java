@@ -8,54 +8,32 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class InstallationRequest extends InstallerDates {
-
     private static final Logger LOGGER = Logger.getLogger(InstallationRequest.class.getName());
     private static final Scanner scan = new Scanner(System.in);
-
-
+    private static final String RESET = "\u001B[0m";
     public static boolean isIsSented() {
         return isSented;
     }
-
     private  static boolean isSented=false;
     private static boolean  isRequsted=false;
-
     private static boolean isAppers=false;
-    private static  String productName;
-    public static boolean isRequsted() {
-        return isRequsted;
-    }
     public static boolean isAppers() {
         return isAppers;
     }
     public String getCustomerName() {
         return customerName;
     }
-
-    public void setCustomerName(String customerName) {
-        InstallationRequest.customerName = customerName;
-    }
-
     public String getCustomerLocation() {
         return customerLocation;
-    }
-
-    public void setCustomerLocation(String customerLocation) {
-        InstallationRequest.customerLocation = customerLocation;
     }
 
     public String getCustomerPhoneNum() {
         return customerPhoneNum;
     }
-
-    public void setCustomerPhoneNum(String customerPhoneNum) {
-        InstallationRequest.customerPhoneNum = customerPhoneNum;
-    }
-
     private static String customerName;
     private static String customerLocation;
     private static String customerPhoneNum;
-
+    private  static String productName;
     public InstallationRequest(String day, String month, String year, String hour, String installerName,
                                String productName, String cName,String cLoc,String cPhnum) {
         super(day, month, year, hour, installerName);
@@ -63,17 +41,10 @@ public class InstallationRequest extends InstallerDates {
         this.customerName = cName;
         this.customerLocation = cLoc;
         this.customerPhoneNum = cPhnum;
-
     }
-
     public String getProductName() {
         return productName;
     }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
     public static void sendEmailNotification() {
         // Use the EmailSender class to send an email notification
         String from= "lemarizeq@gmail.com";
@@ -87,29 +58,25 @@ public class InstallationRequest extends InstallerDates {
         EmailSender.sendEmail(from, to, subject, messageText);
     }
 
-
     public static void displayInstallationRequests(List<InstallationRequest> installationRequests) {
         if (installationRequests.isEmpty()) {
             LOGGER.info("\u001B[34mNo installation requests available.\u001B[0m");
             return;
         }
-
         LOGGER.info("\u001B[32mInstallation Requests:\u001B[0m");
 
-        int i = 1;
         for (InstallationRequest request : installationRequests) {
-            LOGGER.info("\u001B[35m" + i + "- Product Name: " + request.getProductName() +
-                    "\n Customer Name: " + request.getCustomerName() +
-                    ", Location: " + request.getCustomerLocation() +
-                    ", Phone Number: " + request.getCustomerPhoneNum() +
-                    "\n Date-> "+ " Day/month/year: " + request.getDay() + "/" + request.getMonth() + "/" + request.getYear() +
-                    ", Hour: " + request.getHour() + "/nInstaller Name:"+ request.getInstallerName() +"\u001B[0m");
-            i++;
+            LOGGER.info("\u001B[34m- Product Name: " + request.getProductName()+RESET);
+            LOGGER.info("\u001B[34mCustomer Name: " + request.getCustomerName()+RESET);
+            LOGGER.info("\u001B[34mLocation: " + request.getCustomerLocation()+RESET);
+            LOGGER.info("\u001B[34mDATE:"+RESET);
+            LOGGER.info("\u001B[34mDay/month/year: " + request.getDay() + "/" + request.getMonth() + "/" + request.getYear() +
+                    ", Hour: " + request.getHour()+RESET);
+            LOGGER.info("\u001B[34mInstaller Name:"+ request.getInstallerName()+RESET);
+            LOGGER.info("\u001B[34m---------------"+RESET);
         }
         isAppers=true;
     }
-
-
     public static void requestInstallation(List<InstallationRequest> installationRequests, List<Product> productList, String cn,String cl ,String cp) {
         List<InstallerDates> inss;
         inss = InstallationDatesList.getInstaller();

@@ -4,44 +4,43 @@ import car.database.CategoryList;
 import project.najah.edu.ErrorMsg;
 import project.najah.edu.Menu;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Product {
+    private static final PrintWriter writer = new PrintWriter(System.out, true);
+    public static void println(String message) {print(message);}
+    private static void print(String output) {writer.println(output);}
+    private static final String RESET = "\u001B[0m";
+    private static final String SET =  "\u001B[35m";
+
     private static final Logger LOGGER = Logger.getLogger(Product.class.getName());
     private static final Scanner scan = new Scanner(System.in);
     private static final String LINE = "\u001b[35m--------------------------------------------\u001b[0m";
-
     private String type;
-
     public static int getNumProduct() {
         return numProduct;
     }
-
     public static void setNumProduct(int numProduct) {
         Product.numProduct = numProduct;
     }
-
     private static int numProduct = 0;
     private String name;
     private String description;
     private boolean availability;
     private String image;
     private String price;
-
     public static boolean isIsAdded() {
         return isAdded;
     }
-
     public static boolean isIsDeleted() {
         return isDeleted;
     }
-
     public static boolean isIsUpdated() {
         return isUpdated;
     }
-
     public static boolean isIsDisplayed() {
         return isDisplayed;
     }
@@ -88,8 +87,6 @@ public class Product {
         isDeleted = false;
         LOGGER.info("\u001B[34mInvalid product index \u001B[0m");
     }
-
-
 
     public String getType() {
         return type;
@@ -146,7 +143,7 @@ public class Product {
         for (Product product : productList) {
             String s = i + "- " + product.getType() + " , " + product.getName() + " , " + product.getDescription() +
                     " , " + product.getImage() + " , " + product.getPrice() + " $ " + " , " + product.isAvailability();
-            LOGGER.info("\u001B[35m" + s + "\u001B[0m");
+            println(SET+ s + RESET);
             i++;
             isDisplayed = true;
 
@@ -326,7 +323,7 @@ public class Product {
                     String productInfo = "\u001b[35m" + i + ". " + product.getType() + " , " + product.getName() +
                             " , " + product.getDescription() + " , " + product.getImage() +
                             " , " + product.getPrice() + " $ " + " , " + product.isAvailability() + "\u001b[0m";
-                    LOGGER.info("\u001B[35m" + productInfo + "\u001B[0m");
+                    println(SET + productInfo + RESET);
 
                     isExisted = true;
                     // Ask if the user wants to buy the product
@@ -334,18 +331,24 @@ public class Product {
                     String choose = scan.nextLine();
 
                     // Process the user's decision
-                    if (choose.equals("1")) {
-                        // Pass the index of the selected product to the PlaceOrder method
+                    switch (choose) {
+                        case "1":
+                            // Pass the index of the selected product to the PlaceOrder method
+                            updateByName(product.getName());
+                            break;
 
-                        updateByName(product.getName());
-                    } else if (choose.equals("2")) {
-                        removeProductByName(product1, product.getName());
-                        break;
-                    } else if (choose.equals("3")) {
-                        break;
-                    } else
-                        ErrorMsg.showWarning();
-                    break;
+                        case "2":
+                            removeProductByName(product1, product.getName());
+                            break;
+
+                        case "3":
+                            // No action needed for option 3
+                            break;
+
+                        default:
+                            ErrorMsg.showWarning();
+                            break;
+                    }
                     // Break out of the loop since the product is found
                 }
             }
@@ -365,11 +368,10 @@ public class Product {
                     String productInfo = "\u001b[35m" + i + ". " + product.getType() + " , " + product.getName() +
                             " , " + product.getDescription() + " , " + product.getImage() +
                             " , " + product.getPrice() + " $ " + " , " + product.isAvailability() + "\u001b[0m";
-                    LOGGER.info("\u001B[35m"+ productInfo +"\u001B[0m");
+                    println(SET+ productInfo +RESET);
                     isExisted2 = true;
                 }
             }
-
             if (isExisted2) {
                 LOGGER.info("\u001b[35m Do You Want to Delete Category (yes/no): \u001b[0m");
                 String choose = scan.nextLine();
@@ -387,11 +389,10 @@ public class Product {
         }
 
         else if (select.equals("3")){
-           return;
+            return;
         }
         else
             ErrorMsg.showWarning();
-
 
     }
     }

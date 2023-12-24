@@ -1,14 +1,8 @@
 
-u	java:S135†"YReduce the total number of break and continue statements in this loop to use at most one.(Çö»8Âìœ»É1
-v
-java:S1104"TMake isSented a static final constant or non-public and provide accessors if needed.(®ÂĞ´ıÿÿÿÿ8Ãìœ»É1
-P
-java:S1444".Make this "public static isSented" field final(®ÂĞ´ıÿÿÿÿ8Ãìœ»É1
-Y
-java:S26290"7Use the built-in formatting to construct this argument.(…ı²•ıÿÿÿÿ8Äìœ»É1
-Y
-java:S2629\"7Use the built-in formatting to construct this argument.(·¤Üùÿÿÿÿ8Äìœ»É1
-Z
-java:S2629Œ"7Use the built-in formatting to construct this argument.(ææéÆúÿÿÿÿ8Äìœ»É1
+t
+java:S1104"RMake isSent a static final constant or non-public and provide accessors if needed.(®Íİøüÿÿÿÿ8ıëµèÉ1
+N
+java:S1444",Make this "public static isSent" field final(®Íİøüÿÿÿÿ8ıëµèÉ1
 z
-java:S1450"XRemove the "isExisted" field and declare it as a local variable in the relevant methods.(±Ùîíÿÿÿÿÿ8Íìœ»É1
+java:S1450"XRemove the "isExisted" field and declare it as a local variable in the relevant methods.(±Ùîíÿÿÿÿÿ8‰ìµèÉ1
+G	java:S106"+Replace this use of System.out by a logger.(ÓË²¬8Ç‹¶èÉ1

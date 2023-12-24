@@ -365,7 +365,6 @@ public class Main {
                         if(open==3)
                             break;
                         else if(open==1){
-
                             List<InstallationRequest> requests;
                             requests = InstallationRequestsList.getRequest();
                             InstallationRequest.displayInstallationRequests(requests);
