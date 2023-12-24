@@ -33,7 +33,7 @@ public class InstallationRequest extends InstallerDates {
     private static String customerName;
     private static String customerLocation;
     private static String customerPhoneNum;
-    private  static String productName;
+    private static String productName;
     public InstallationRequest(String day, String month, String year, String hour, String installerName,
                                String productName, String cName,String cLoc,String cPhnum) {
         super(day, month, year, hour, installerName);

@@ -11,7 +11,6 @@ public class InstallationRequestsList {
 
     // Private constructor to hide the implicit public one
     private InstallationRequestsList() {
-        throw new IllegalStateException("Utility class");
     }
 
     static{

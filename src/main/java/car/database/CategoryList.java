@@ -11,9 +11,7 @@ public class CategoryList {
     private static final String EXTERIOR = "Exterior";
     public static final String ELECTRONICS = "Electronics";
 
-    private CategoryList() {
-        throw new IllegalStateException("Utility class");
-    }
+    private CategoryList() {}
 
     static{
         p_listing.add(new Product("Interior", "Steering cover","des","url","50",true));

@@ -9,9 +9,7 @@ public class InstallationDatesList {
 
     private static final List<InstallerDates> date = new ArrayList<>();
     // Private constructor to hide the implicit public one
-    private InstallationDatesList() {
-        throw new IllegalStateException("Utility class");
-    }
+    private InstallationDatesList() {}
     static{
         date.add(new InstallerDates("09", "11","2023","6:00","Ahmed"));
         date.add(new InstallerDates("11", "03","2023","5:00","Ali"));

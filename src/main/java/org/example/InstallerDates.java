@@ -17,40 +17,25 @@ public class InstallerDates {
         return day;
     }
 
-    public void setDay(String day) {
-        this.day = day;
-    }
+
 
     public String getMonth() {
         return month;
     }
 
-    public void setMonth(String month) {
-        this.month = month;
-    }
 
     public String getYear() {
         return year;
     }
 
-    public void setYear(String year) {
-        this.year = year;
-    }
 
     public String getHour() {
         return hour;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
 
     public String getInstallerName() {
         return installerName;
-    }
-
-    public void setInstallerName(String installerName) {
-        this.installerName = installerName;
     }
 
     public InstallerDates(String day, String month, String year, String hour, String installerName) {
@@ -68,21 +53,14 @@ public class InstallerDates {
         LOGGER.info("\u001B[33m Day:\u001B[0m");
         String dayy = scan.nextLine();
 
-
         LOGGER.info("\u001B[33m Month:\u001B[0m");
         String monthh = scan.nextLine();
-
-
         LOGGER.info("\u001B[33m Year:\u001B[0m");
         String yearr = scan.nextLine();
-
-
         LOGGER.info("\u001B[33m Hour:\u001B[0m");
         String hourr = scan.nextLine();
 
-
         InstallerDates newDate = new InstallerDates(dayy, monthh, yearr, hourr, namee);
-
         // Add the new product to the productList
         installerDatesList.add(newDate);
         LOGGER.info("\u001B[32mDate Added successfully.\u001B[0m");

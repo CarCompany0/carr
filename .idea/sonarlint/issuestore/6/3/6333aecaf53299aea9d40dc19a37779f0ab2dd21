@@ -2,5 +2,13 @@
 z	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆÿÿÿÿÿ8¦¢Â´É1
 p
 java:S3776"SRefactor this method to reduce its Cognitive Complexity from 399 to the 15 allowed.(Çµí‘8´¢Â´É1
+W
+java:S2209)"5Change this instance-reference to a static reference.(¼Ìêıÿÿÿÿ8õˆüêÉ1
+W
+java:S2209)"5Change this instance-reference to a static reference.(¼Ìêıÿÿÿÿ8õˆüêÉ1
+W
+java:S2209-"5Change this instance-reference to a static reference.(®Õƒ¨ıÿÿÿÿ8öˆüêÉ1
+S
+java:S2209é"5Change this instance-reference to a static reference.(úŠ˜ê8‡‰üêÉ1
 å
 java:S6541"ÇA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 380 to 64, Complexity from 99 to 14, Nesting Level from 14 to 2, Number of Variables from 68 to 6.(Çµí‘8Å¢Â´É1
