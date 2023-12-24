@@ -2,8 +2,8 @@ package project.najah.edu;
 
 import car.database.InstallationRequestsList;
 import car.database.Userslist;
-import car.database.category_list;
-import car.database.installationDatesList;
+import car.database.CategoryList;
+import car.database.InstallationDatesList;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -109,7 +109,7 @@ private String pname;
     @Then("the Customer buys it succsesfully")
     public void the_customer_buys_it_succsesfully() {
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
         boolean isBouught=false;
         int selectedProductIndex = selectProduct2 - 1;
         Customer.Sss orderl = new Customer.Sss();
@@ -145,7 +145,7 @@ private String pname;
         // Write code here that turns the phrase above into concrete actions
 
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
         boolean isBouught=false;
         int selectedProductIndex = selectProduct2 - 1;
         Customer.Sss orderl = new Customer.Sss();
@@ -208,7 +208,7 @@ private String pname;
     public void print_all_information_about_this_product() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
         for (int i = 0; i < product1.size(); i++) {
             Product product = product1.get(i);
             if (product.getName().equalsIgnoreCase(pname)) {
@@ -226,7 +226,7 @@ private String pname;
     public void show_the_product_list() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> product11;
-        product11 = category_list.getProduct();
+        product11 = CategoryList.getProduct();
 
         Product.viewProducts(product11);
 
@@ -348,17 +348,17 @@ emailExists = true;
         // Write code here that turns the phrase above into concrete actions
         this.selectedDateIndex = Integer.parseInt(string) - 1;
         List<InstallerDates> inss;
-        inss = installationDatesList.getInstaller();
+        inss = InstallationDatesList.getInstaller();
         InstallerDates.viewDates(inss);
         }
     @Then("The installation will be requested")
     public void the_installation_will_be_requested() {
         boolean isRequsted=false;
         List<InstallerDates> inss;
-        inss = installationDatesList.getInstaller();
+        inss = InstallationDatesList.getInstaller();
 
         List<Product> product1;
-        product1 = category_list.getProduct();
+        product1 = CategoryList.getProduct();
 
         List<InstallationRequest> req1;
         req1 = InstallationRequestsList.getRequest();
