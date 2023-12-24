@@ -12,7 +12,7 @@ public class CategoryList {
     public static final String ELECTRONICS = "Electronics";
 
     private CategoryList() {
-        throw new IllegalStateException("Utility class");
+
     }
 
     static{
