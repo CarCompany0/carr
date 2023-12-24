@@ -1,3 +1,4 @@
+
 Feature: User login
 
   Scenario: user logs in successfully
@@ -25,4 +26,3 @@ Feature: User login
   Scenario: user chooses log out
     Given the user is logged in
     Then the user will return to the welcome page
-
