@@ -2,7 +2,7 @@ package project.najah.edu;
 
 import car.database.InstallationRequestsList;
 import car.database.Userslist;
-import car.database.installationDatesList;
+import car.database.InstallationDatesList;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -89,7 +89,7 @@ private  String select;
     @Then("The new appointment Added succsesfully")
     public void theNewAppointmentAddedSuccsesfully() {
         List<InstallerDates> inss;
-        inss = installationDatesList.getInstaller();
+        inss = InstallationDatesList.getInstaller();
         String currentUser;
         for (User user : Userslist.getUsers()) {
             if (user.getEmail().equals(current)) {
