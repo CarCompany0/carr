@@ -1,4 +1,3 @@
-
 Feature: Customer Role
 
   Scenario: Successfully buying accessories
@@ -74,7 +73,3 @@ Feature: Customer Role
     And the  customer  pass "00000"
     And the installer date "3"
     Then The installation will be requested
-
-
-
-
