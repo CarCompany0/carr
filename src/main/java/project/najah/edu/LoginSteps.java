@@ -56,7 +56,7 @@ public void signUp(){
         issignedup=true;
 }
 
-        public boolean isAdminIsLogged() {
+        public static boolean isAdminIsLogged() {
             return adminIsLogged;
         }
 
@@ -64,7 +64,7 @@ public void signUp(){
             return customerIsLogged;
         }
 
-        public boolean isInstallerIsLogged() {
+        public static boolean isInstallerIsLogged() {
             return installerIsLogged;
         }
 
