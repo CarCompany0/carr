@@ -18,18 +18,18 @@ public class login {
     private String password;
     @When("email is a {string}")
     public void email_is_a(String string) {
-this.email=string  ;
+        this.email=string  ;
     }
     @When("password is a {string}")
     public void password_is_a(String string) {
         // Write code here that turns the phrase above into concrete actions
-                            this.password=string;
+        this.password=string;
     }
     @Given("the user is not logged in")
     public void theUserIsNotLoggedIn() {
         // Write code here that turns the phrase above into concrete actions
         LoginSteps.logout();
-       assertFalse(loginsteps.isLoggedIn());
+        assertFalse(loginsteps.isLoggedIn());
     }
     @Then("the user logs in successfully")
     public void theUserLogsInSuccessfully() {
@@ -42,25 +42,25 @@ this.email=string  ;
             ErrorMsg.showError();
 
         }
-      else{
-          loginsteps.login();
-        assertTrue(loginsteps.isLoggedIn());}
+        else{
+            loginsteps.login();
+            assertTrue(loginsteps.isLoggedIn());}
     }
 
     @Then("the user will not login")
-        public void theUserWillNotLogin() {
+    public void theUserWillNotLogin() {
         LoginSteps.checkAuth(email, password);
 
         if (email.isEmpty() || password.isEmpty()) {
-           ErrorMsg.showError2();
+            ErrorMsg.showError2();
         }
-       else if (!LoginSteps.isAdminIsLogged() && !LoginSteps.isCustomerIsLogged() && !LoginSteps.isInstallerIsLogged()) {
-           ErrorMsg.showError();
+        else if (!LoginSteps.isAdminIsLogged() && !LoginSteps.isCustomerIsLogged() && !LoginSteps.isInstallerIsLogged()) {
+            ErrorMsg.showError();
 
         }
 
 
-   }
+    }
 
 
     @Given("that the user is not logged in")
