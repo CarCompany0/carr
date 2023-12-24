@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 public class User {
 
     private static final Logger LOGGER = Logger.getLogger(User.class.getName());
+
     private String username;
     private String email;
     private String password;
@@ -13,9 +14,7 @@ public class User {
     private  String location;
     private static int numUser = 0;
     private static boolean isUserUpdated=false;
-
-
-
+    private static final String RESET = "\u001B[0m";
     private static boolean isUserDeleted=false;
     public static int getNumUser() {
         return numUser;
@@ -29,8 +28,7 @@ public class User {
         this.location=location;
         this.phoneNum=phoneNum;
     }
-    public User() {
-    }
+
     public static Boolean getIsUserUpdated() {
         return isUserUpdated;
     }
@@ -49,13 +47,11 @@ public class User {
     public String getType() {
 
         return type;}
-
     public String getLocation() {
         return location;}
 
     public String getPhoneNum() {
         return phoneNum;}
-
 
  public  void setUsername(String username){ this.username=username;}
     public void setEmail(String email) {
@@ -71,17 +67,16 @@ public class User {
     }
 
 public void setPhoneNum(String phoneNum){this.phoneNum=phoneNum;}
-
     public void setLocation(String location){this.location=location;}
 
     public static void printUserInfo(User user) {
-        LOGGER.info("\u001B[34mUser Information:\u001B[0m");
-        LOGGER.info("\u001B[34mUsername: " + user.getUsername()+"\u001B[0m");
-        LOGGER.info("\u001B[34mEmail: " + user.getEmail()+"\u001B[0m");
-        LOGGER.info("\u001B[34mPassword: " + user.getPassword()+"\u001B[0m");
-        LOGGER.info("\u001B[34mLocation: " + user.getLocation()+"\u001B[0m");
-        LOGGER.info("\u001B[34mPhone Number: " + user.getPhoneNum()+"\u001B[0m");
-        LOGGER.info("\u001B[34m---------------\u001B[0m");
+        LOGGER.info("\u001B[34mUser Information:"+RESET);
+        LOGGER.info("\u001B[34mUsername: " + user.getUsername()+RESET);
+        LOGGER.info("\u001B[34mEmail: " + user.getEmail()+RESET);
+        LOGGER.info("\u001B[34mPassword: " + user.getPassword()+RESET);
+        LOGGER.info("\u001B[34mLocation: " + user.getLocation()+RESET);
+        LOGGER.info("\u001B[34mPhone Number: " + user.getPhoneNum()+RESET);
+        LOGGER.info("\u001B[34m---------------"+RESET);
     }
     public static void viewAccounts(List<User> userList) {
 
@@ -90,7 +85,7 @@ public void setPhoneNum(String phoneNum){this.phoneNum=phoneNum;}
         {
             String s = i+ "- "+ user.getUsername()+ " , " + user.getEmail()+ " , " + user.getType()+
             " , " + user.getLocation()+" , " + user.getPhoneNum();
-            LOGGER.info("\u001B[35m"+s+"\u001B[0m");
+          LOGGER.info("\u001B[35m" +s + RESET);
             i++;
         }
         numUser = i;
@@ -107,9 +102,7 @@ public void setPhoneNum(String phoneNum){this.phoneNum=phoneNum;}
         }
         // Update numUser after removal
        else isUserDeleted=false;
-
     }
-
     public static void updateUserByNum(List<User> userList, int numUser,String newUsername, String newLocation, String newPhoneNum) {
         if (numUser > 0 && numUser <= userList.size()) {
             User userToUpdate = userList.get(numUser - 1);
