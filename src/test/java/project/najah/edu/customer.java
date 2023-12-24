@@ -29,7 +29,7 @@ public class customer {
 
     private  String selectProduct;
     private int selectProduct2;
-private String pname;
+    private String pname;
     private  String email;
     private  String select;
     private  int selectedDateIndex;
@@ -52,7 +52,7 @@ private String pname;
     @When("The customer enters product number {string}")
     public void the_customer_enters_product_number(String string) {
 
-    this.selectProduct2=Integer.parseInt(string);
+        this.selectProduct2=Integer.parseInt(string);
     }
     @When("The customer enters product name {string}")
     public void the_customer_enters_product_name(String string) {
@@ -62,13 +62,13 @@ private String pname;
     @When("the customer  enters {string} of the quantity of that accessories")
     public void the_customer_enters_of_the_quantity_of_that_accessories(String string) {
         // Write code here that turns the phrase above into concrete actions
-     this.quantity=Integer.parseInt(string);
+        this.quantity=Integer.parseInt(string);
     }
 
     @When("the Availabelity is {string}")
     public void the_availabelity_is(String string) {
         // Write code here that turns the phrase above into concrete actions
-      this.available=Boolean.parseBoolean(string);
+        this.available=Boolean.parseBoolean(string);
     }
     @When("the  customer  email {string}")
     public void the_customer_email(String string) {
@@ -121,22 +121,22 @@ private String pname;
         if (selectedProductIndex >= 0 && selectedProductIndex < product1.size()) {
 
             Product selectedProduct = product1.get(selectedProductIndex);
-     if(available==false){
-         isBouught=false;
-         LOGGER.info("\u001b[35mThe Product Out Of Stock\u001b[0m");
-     } else{
+            if(available==false){
+                isBouught=false;
+                LOGGER.info("\u001b[35mThe Product Out Of Stock\u001b[0m");
+            } else{
 
 
-         LOGGER.info("\u001b[35mYou have selected: \u001b[35m" + quantity + "\u001b[35m of \u001b[35m" + selectedProduct.getName() + " " + selectedProduct.getPrice() +"$"+ "\u001b[0m");
+                LOGGER.info("\u001b[35mYou have selected: \u001b[35m" + quantity + "\u001b[35m of \u001b[35m" + selectedProduct.getName() + " " + selectedProduct.getPrice() +"$"+ "\u001b[0m");
 
-         Customer.Order newOrder = new Customer.Order(selectedProduct, quantity);
-         cus.oL.addOrder(newOrder);
-         isBouught=true;
-         LOGGER.info("\u001b[35mOrder Added Successfully To Cart \u001b[0m"); //+ User.getUsername()
+                Customer.Order newOrder = new Customer.Order(selectedProduct, quantity);
+                cus.oL.addOrder(newOrder);
+                isBouught=true;
+                LOGGER.info("\u001b[35mOrder Added Successfully To Cart \u001b[0m"); //+ User.getUsername()
 
-     }
-     assertTrue(isBouught);
-     }
+            }
+            assertTrue(isBouught);
+        }
     }
 
 
@@ -317,8 +317,8 @@ private String pname;
 
                 for (User user : Userslist.getUsers()) {
                     if (!user.getEmail().equals(curente) && user.getEmail().equals(email)) {
-ErrorMsg.showError3();
-emailExists = true;
+                        ErrorMsg.showError3();
+                        emailExists = true;
                         break;
                     }
                 }
@@ -350,7 +350,7 @@ emailExists = true;
         List<InstallerDates> inss;
         inss = InstallationDatesList.getInstaller();
         InstallerDates.viewDates(inss);
-        }
+    }
     @Then("The installation will be requested")
     public void the_installation_will_be_requested() {
         boolean isRequsted=false;
@@ -379,29 +379,29 @@ emailExists = true;
         }
         LoginSteps.checkAuth(curente, pass);
         if (LoginSteps.isCustomerIsLogged()){
-        User currentUser = null;
-        for (User user : Userslist.getUsers()) {
-            if (user.getEmail().equals(curente)) {
-                currentUser = user;
-                break;
-            }}
+            User currentUser = null;
+            for (User user : Userslist.getUsers()) {
+                if (user.getEmail().equals(curente)) {
+                    currentUser = user;
+                    break;
+                }}
 
             if (currentUser != null) {
-        if (selectedDateIndex >= 0 && selectedDateIndex < inss.size()) {
-            InstallerDates selectedInstallerDate = inss.get(selectedDateIndex);
+                if (selectedDateIndex >= 0 && selectedDateIndex < inss.size()) {
+                    InstallerDates selectedInstallerDate = inss.get(selectedDateIndex);
 
-            InstallationRequest newRequest = new InstallationRequest(selectedInstallerDate.getDay(), selectedInstallerDate.getMonth(),
-                    selectedInstallerDate.getYear(), selectedInstallerDate.getHour(), selectedInstallerDate.getInstallerName(),
-                    selectProduct, currentUser.getUsername(), currentUser.getLocation(), currentUser.getPhoneNum());
-            req1.add(newRequest);
-            isRequsted = true;
-            LOGGER.info("\u001B[32mInstallation request added successfully.\u001B[0m");
-            assertTrue(isRequsted);
+                    InstallationRequest newRequest = new InstallationRequest(selectedInstallerDate.getDay(), selectedInstallerDate.getMonth(),
+                            selectedInstallerDate.getYear(), selectedInstallerDate.getHour(), selectedInstallerDate.getInstallerName(),
+                            selectProduct, currentUser.getUsername(), currentUser.getLocation(), currentUser.getPhoneNum());
+                    req1.add(newRequest);
+                    isRequsted = true;
+                    LOGGER.info("\u001B[32mInstallation request added successfully.\u001B[0m");
+                    assertTrue(isRequsted);
+                }
+            }
         }
-            }
-            }
 
-        }
+    }
 
 }
 
