@@ -19,7 +19,7 @@ public class installer {
     private static final Logger LOGGER = Logger.getLogger(customer.class.getName());
 
     LoginSteps loginsteps;
-private  String select;
+    private  String select;
     private  String day;
     private  String mounth;
     private  String year;
