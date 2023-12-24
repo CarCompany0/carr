@@ -2,7 +2,6 @@ package project.najah.edu;
 
 import car.database.CategoryList;
 import car.database.Userslist;
-import car.database.CategoryList;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -123,7 +122,7 @@ public class admin {
         }
         else {
             boolean av = Boolean.parseBoolean(ava);
-Product product=new Product(type,name,des,img,price,av);
+            Product product=new Product(type,name,des,img,price,av);
             Product.updateProductByNum(prosuctList, pnum,product);
             assertTrue(Product.isUpdated());
         }
@@ -230,9 +229,9 @@ Product product=new Product(type,name,des,img,price,av);
 
         }
 
-            if(!typeExists){
-                ErrorMsg.showWarning();
-                assertFalse(typeExists);
+        if(!typeExists){
+            ErrorMsg.showWarning();
+            assertFalse(typeExists);
 
         }
     }
@@ -288,14 +287,14 @@ Product product=new Product(type,name,des,img,price,av);
     @When("The customer enter the name of product is {string}")
     public void the_customer_enter_the_name_of_product_is(String string) {
         // Write code here that turns the phrase above into concrete actions
-this.pr=string;
+        this.pr=string;
     }
 
     @Then("print all details about this product")
     public void print_all_details_about_this_product() {
         // Write code here that turns the phrase above into concrete actions
         List<Product> productList;
-      productList = CategoryList.getProduct();
+        productList = CategoryList.getProduct();
         boolean isExisted = false;
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
@@ -316,7 +315,7 @@ this.pr=string;
     @When("The customer enter the name of Category {string}")
     public void the_customer_enter_the_name_of_category(String string) {
         // Write code here that turns the phrase above into concrete actions
-this.cat=string;
+        this.cat=string;
     }
 
     @Then("print all products that have the same category")
