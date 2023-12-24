@@ -8,10 +8,13 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmailSender {
-    public static boolean isSented() {
-        return isSented;
+    private EmailSender() {
+        // Private constructor to prevent instantiation of the class
     }
-    private static boolean isSented=false;
+    public static boolean isSent() {
+        return isSent;
+    }
+    private static boolean isSent =false;
 
     public static void sendEmail(String from, String to, String subject, String messageText) {
 
@@ -29,16 +32,18 @@ public class EmailSender {
                 }
             }
             );
+
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to, false));
             message.setSubject(subject);
             message.setText(messageText);
             Transport.send(message);
+
         } catch (MessagingException m) {
             ErrorMsg.showError();
         }
-        isSented=true;
+        isSent =true;
 
     }
 
