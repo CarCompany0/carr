@@ -9,7 +9,6 @@ import org.example.User;
 import java.util.logging.Logger;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class signup {
     private static final Logger LOGGER = Logger.getLogger(customer.class.getName());
@@ -29,7 +28,7 @@ public class signup {
     @Given("that the user is not signed up")
     public void thatTheUserIsNotSignedUp() {
         // Write code here that turns the phrase above into concrete actions
-LoginSteps.logout();
+        LoginSteps.logout();
         assertFalse(loginsteps.isIssignedup());
     }
     @When("email is {string}")
@@ -102,13 +101,13 @@ LoginSteps.logout();
         // Write code here that turns the phrase above into concrete actions
         User.isValidEmail(email);
 
-         if(User.isValidEmail(email)) {
-             for (User user : Userslist.getUsers()) {
-            if (user.getEmail().equals(email)) {
-                LOGGER.info("\u001B[34m Email already exists. Choose a different email.\u001B[0m");
-                break;
-            }
-        }}
+        if(User.isValidEmail(email)) {
+            for (User user : Userslist.getUsers()) {
+                if (user.getEmail().equals(email)) {
+                    LOGGER.info("\u001B[34m Email already exists. Choose a different email.\u001B[0m");
+                    break;
+                }
+            }}
         else if (password != null && password.matches(passRange)){
             ErrorMsg.passWarning();
         }
