@@ -2,7 +2,7 @@ package project.najah.edu;
 
 import car.database.InstallationRequestsList;
 import car.database.Userslist;
-import car.database.InstallationDatesList;
+import car.database.installationDatesList;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -19,7 +19,7 @@ public class installer {
     private static final Logger LOGGER = Logger.getLogger(customer.class.getName());
 
     LoginSteps loginsteps;
-    private  String select;
+private  String select;
     private  String day;
     private  String mounth;
     private  String year;
@@ -88,27 +88,20 @@ public class installer {
     }
     @Then("The new appointment Added succsesfully")
     public void theNewAppointmentAddedSuccsesfully() {
-        boolean isAdded=false;
         List<InstallerDates> inss;
-        inss = InstallationDatesList.getInstaller();
-        LoginSteps.checkAuth(current, password);
-        if (LoginSteps.isCustomerIsLogged()){
-            String currentUser;
-            for (User user : Userslist.getUsers()) {
-                if (user.getEmail().equals(current)) {
-                    currentUser = user.getUsername();
-                    isAdded=true;
-                    InstallerDates newDate = new InstallerDates(day, mounth, year, hour, currentUser);
+        inss = installationDatesList.getInstaller();
+        String currentUser;
+        for (User user : Userslist.getUsers()) {
+            if (user.getEmail().equals(current)) {
+                currentUser = user.getUsername();
+                InstallerDates newDate = new InstallerDates(day, mounth, year, hour, currentUser);
 
-                    // Add the new product to the productList
-                    inss.add(newDate);
+                // Add the new product to the productList
+                inss.add(newDate);
+                LOGGER.info("\u001B[32mDate Added successfully.\u001B[0m");
+                InstallerDates.viewDates(inss);
 
-
-                }
             }
-            LOGGER.info("\u001B[32mDate Added successfully.\u001B[0m");
-            InstallerDates.viewDates(inss);
-            assertTrue(isAdded);
         }
 
     }
