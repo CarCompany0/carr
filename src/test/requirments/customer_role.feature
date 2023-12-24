@@ -34,13 +34,13 @@ Feature: Customer Role
     Given  the user is customer
 
     When The customer choose "Edit Profile"
-    And the  customer  email "leema@gmail.com"
-    And the  customer  pass "00000"
-    And the new customer  username "leema"
-    And the new customer  email "leema@gmail.com"
-    And the new customer  password "00000"
+    And the  customer  email "jood@gmail.com"
+    And the  customer  pass "54321"
+    And the new customer  username "joudy"
+    And the new customer  email "jood@gmail.com"
+    And the new customer  password "54321"
     And the new customer  location "qalqiliah"
-    And the new customer  phonenumber "0231456889"
+    And the new customer  phonenumber "454545454"
     Then The information Succsesfully
 
   Scenario: Failed Edit Profile
@@ -52,7 +52,19 @@ Feature: Customer Role
     And the new customer  email "dana@gmail.com"
     And the new customer  password "00000"
     And the new customer  location "qalqiliah"
-    And the new customer  phonenumber "0231456889"
+    And the new customer  phonenumber "454545454"
+    Then The information failed to update
+
+  Scenario: Failed Edit Profile due to blanks
+    Given  the user is customer
+    When The customer choose "Edit Profile"
+    And the  customer  email "jood@gmail.com"
+    And the  customer  pass "54321"
+    And the new customer  username "jood"
+    And the new customer  email "jood@gmail.com"
+    And the new customer  password "00000"
+    And the new customer  location " "
+    And the new customer  phonenumber ""
     Then The information failed to update
 
   Scenario: Request Installation
