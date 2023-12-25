@@ -56,16 +56,44 @@ Feature: Admin tasks
       | numProduct | type       | name   | des   | image | price | availablity |
       | '2'        | 'Interior' | 'name' | 'des' | 'url' | '50$' | 'true'      |
 
+  Scenario Outline: update product By Name
+    Given that the user is an admin
+    When Product name <oldName>
+    When the type is <type>
+    And the name is <name>
+    And the des is <des>
+    And the image is <image>
+    And the price is <price>
+    And availablity is <availablity>
+    Then the product is Updated successfully in the list
+    Examples:
+      | oldName  | type       |  | name   | des   | image | price | availablity |
+      | 'camera' | 'Interior' |  | 'name' | 'des' | 'url' | '50$' | 'true'      |
+
+  Scenario Outline: remove product By Name
+    Given that the user is an admin
+    When Product name <oldName>
+    Then the product is Deleted successfully in the list
+    Examples:
+      | oldName |
+      | 'tint'  |
 
 
-
-  Scenario Outline:  admin enter wrong product number to update/delete product
+  Scenario Outline:  admin enter wrong product number to update product
     Given that the user is an admin
     When Product num <numProduct>
-    Then product is failed to Update or delete
+    Then product is failed to update
     Examples:
       | numProduct |
-      | '10'       |
+      | '15'       |
+
+  Scenario Outline:  admin enter wrong product number to delete product
+    Given that the user is an admin
+    When Product num <numProduct>
+    Then product is failed to delete
+    Examples:
+      | numProduct |
+      | '15'       |
 
   Scenario Outline: An admin deletes products
     Given that the user is an admin
@@ -100,6 +128,13 @@ Feature: Admin tasks
     And the phonenumber is "05649875"
     Then The User information will be Updated successfully
 
+  Scenario: faild to update user information.
+    Given that the user is an admin
+    When  usernum "20"
+    When the username is "saleh"
+    And the location is "india"
+    And the phonenumber is "05649875"
+    Then The User information will not be Updated
 
 
   Scenario Outline: delete User Account
@@ -109,6 +144,14 @@ Feature: Admin tasks
     Examples:
       | numUser |
       | '2'     |
+
+  Scenario Outline: faild to delete User Account
+    Given that the user is an admin
+    When usernum <numUser>
+    Then The Account will not deleted
+    Examples:
+      | numUser |
+      | '20'    |
 
   Scenario: can search for product
     Given  that the user is an admin
