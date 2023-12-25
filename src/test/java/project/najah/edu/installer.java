@@ -88,6 +88,8 @@ public class installer {
     }
     @Then("The new appointment Added succsesfully")
     public void theNewAppointmentAddedSuccsesfully() {
+        LoginSteps.checkAuth(current, password);
+
         List<InstallerDates> inss;
         inss = InstallationDatesList.getInstaller();
         String currentUser;
