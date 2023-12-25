@@ -11,10 +11,6 @@ public class EmailSender {
     private EmailSender() {
         // Private constructor to prevent instantiation of the class
     }
-    public static boolean isSent() {
-        return isSent;
-    }
-    private static boolean isSent =false;
 
     public static void sendEmail(String from, String to, String subject, String messageText) {
 
@@ -42,8 +38,7 @@ public class EmailSender {
 
         } catch (MessagingException m) {
             ErrorMsg.showError();
-        }
-        isSent =true;
+         }
 
     }
 
