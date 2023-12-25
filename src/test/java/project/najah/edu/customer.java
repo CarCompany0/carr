@@ -195,9 +195,13 @@ public class customer {
     public void show_the_history_of_his_orders() {
         // Write code here that turns the phrase above into concrete actions
         Customer.displayOrders();
-
-        assertTrue(Customer.isViewed());
+assertTrue(Customer.isViewed());
     }
+    @Then("show the history will be null")
+    public void show_the_history_will_be_null() {
+        // Write code here that turns the phrase above into concrete actions
+        Customer.displayOrders();
+assertFalse(Customer.isViewed());    }
     @When("The customer enter the name of product {string}")
     public void the_customer_enter_the_name_of_product(String string) {
         // Write code here that turns the phrase above into concrete actions
