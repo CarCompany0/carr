@@ -1,5 +1,10 @@
 Feature: Customer Role
 
+  Scenario: view orders
+    Given  the user is customer
+    When The customer choose "view orders"
+    Then show the history will be null
+
   Scenario: Successfully buying accessories
     Given  the user is customer
     When The customer enters product number "2"
