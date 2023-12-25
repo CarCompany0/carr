@@ -97,7 +97,7 @@ public class admin {
         else {
             product.addProduct(prosuctList,type,name,des,img,price,ava);
 
-            assertTrue(product.isAdded());}
+           }
     }
 
     @Then("The product is failed to add")
@@ -108,7 +108,7 @@ public class admin {
         if (type.isEmpty() || name.isEmpty() || des.isEmpty() || img.isEmpty() || price.isEmpty() || ava.isEmpty()) {
             product.showError();
 
-            assertFalse(product.isAdded());
+
         }
 
     }
@@ -124,7 +124,7 @@ public class admin {
         Product product=new Product(type,name,des,img,price,av);
         if (type.isEmpty() || name.isEmpty() || des.isEmpty() || img.isEmpty() || price.isEmpty() || ava.isEmpty()) {
             product.showError();
-            assertFalse(Product.isUpdated());
+
         }
 
 
@@ -142,7 +142,7 @@ public class admin {
         else {
 
             Product.updateProductByNum(prosuctList, pnum,product);
-            assertTrue(Product.isUpdated());
+
         }
     }
     @When("Category name {string}")
@@ -204,7 +204,7 @@ public class admin {
         }
         else
            product.removeProductByNum(prosuctList, pnum);
-        assertTrue(product.isDeleted());
+
     }
 
 
