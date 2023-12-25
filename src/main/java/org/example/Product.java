@@ -20,24 +20,7 @@ public class Product {
     private String price;
 
 
-    public static boolean isAdded = false;
 
-
-    public static boolean isAdded() {
-        return isAdded;
-    }
-
-    public static boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public static boolean isUpdated() {
-        return isUpdated;
-    }
-    public static boolean isDeleted = false;
-
-    public static boolean isUpdated = false;
-    
 
     public Product(String type, String name, String description, String image, String price, boolean availability) {
         this.type = type;
@@ -49,14 +32,12 @@ public class Product {
     }
 
     public static void showError() {
-        isUpdated = false;
-        isAdded = false;
+
         LOGGER.info("\u001B[34mPlease fill all fields\u001B[0m");
     }
 
     public static void showError2() {
-        isUpdated = false;
-        isDeleted = false;
+      ;
         LOGGER.info("\u001B[34mInvalid product index \u001B[0m");
     }
 
@@ -126,11 +107,11 @@ public class Product {
     public static void removeProductByNum(List<Product> productList, int numProduct) {
         if (numProduct > 0 && numProduct <= productList.size()) {
             productList.remove(numProduct - 1);
-            isDeleted = true;
+
 
             LOGGER.info("\u001B[32mProduct removed successfully.\u001B[0m");
         }
-        isUpdated = false;
+
         LOGGER.info("\u001B[34mInvalid product number. Please enter a valid product number.\u001B[0m");
 
     }
@@ -139,7 +120,7 @@ public class Product {
         productList.removeIf(product -> product.getType().equalsIgnoreCase(typeToRemove));
 
                 LOGGER.info("\u001B[32mCategory Deleted successfully.\u001B[0m");
-        isDeleted = true;
+
             }
     public static void removeProductByName(List<Product> productList, String nameToRemove) {
         // Iterate through the productList in reverse order to avoid concurrent modification issues
@@ -156,7 +137,7 @@ public class Product {
             }
 
         }
-        isDeleted = true;
+
     }
     public static void updateProductByNum(List<Product> productList, int numProduct, Product updatedProduct) {
         if (numProduct > 0 && numProduct <= productList.size()) {
@@ -167,11 +148,10 @@ public class Product {
             productToUpdate.setImage(updatedProduct.getImage());
             productToUpdate.setPrice(updatedProduct.getPrice());
             productToUpdate.setAvailability(updatedProduct.isAvailability());
-            isUpdated = true;
 
             LOGGER.info("\u001B[32mProduct Updated successfully.\u001B[0m");
         } else {
-            isUpdated = false;
+
             LOGGER.info("\u001B[34mInvalid product number. Please enter a valid product number.\u001B[0m");
         }
     }
@@ -194,7 +174,7 @@ public class Product {
         Product newProduct = new Product(newType, newName, newDes, newImg, newPrice, Boolean.parseBoolean(newAva));
         // Add the new product to the productList
         productList.add(newProduct);
-        isAdded=true;
+
         LOGGER.info("\u001B[32mProduct Added successfully.\u001B[0m");
     }
 
