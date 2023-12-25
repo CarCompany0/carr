@@ -1,12 +1,8 @@
 package org.example;
 
-import car.database.CategoryList;
-import project.najah.edu.ErrorMsg;
-import project.najah.edu.Menu;
 
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Product {
@@ -17,14 +13,9 @@ public class Product {
     private static final String SET =  "\u001B[35m";
 
     private static final Logger LOGGER = Logger.getLogger(Product.class.getName());
-    private static final Scanner scan = new Scanner(System.in);
-    private static final String LINE = "\u001b[35m--------------------------------------------\u001b[0m";
     private String type;
     public static int getNumProduct() {
         return numProduct;
-    }
-    public static void setNumProduct(int numProduct) {
-        Product.numProduct = numProduct;
     }
     private static int numProduct = 0;
     private String name;
@@ -32,23 +23,10 @@ public class Product {
     private boolean availability;
     private String image;
     private String price;
-    public static boolean isIsAdded() {
-        return isAdded;
-    }
-    public static boolean isIsDeleted() {
-        return isDeleted;
-    }
-    public static boolean isIsUpdated() {
-        return isUpdated;
-    }
-    public static boolean isIsDisplayed() {
-        return isDisplayed;
-    }
+
 
     public static boolean isAdded = false;
-    public static boolean isDisplayed() {
-        return isDisplayed;
-    }
+
 
     public static boolean isAdded() {
         return isAdded;
@@ -150,58 +128,7 @@ public class Product {
         }
         numProduct = i;
     }
-    private static Product getProductInfo() {
-        LOGGER.info("\u001b[35mEnter new type:\u001b[0m");
-        String type = scan.next();
 
-        LOGGER.info("\u001b[35mEnter new product name:\u001b[0m");
-        String pname = scan.next();
-
-        LOGGER.info("\u001b[35mEnter new description:\u001b[0m");
-        String des = scan.next();
-
-        LOGGER.info("\u001b[35mEnter new image URL:\u001b[0m");
-        String url = scan.next();
-
-        LOGGER.info("\u001b[35mEnter new price:\u001b[0m");
-        String price = scan.next();
-
-        LOGGER.info("\u001b[35mIs it available? (true/false):\u001b[0m");
-        String avv = scan.next();
-
-        if (type.isEmpty() || pname.isEmpty() || des.isEmpty() || url.isEmpty() || price.isEmpty() || avv.isEmpty()) {
-            return null; // Indicates invalid input
-        }
-        boolean av = Boolean.parseBoolean(avv);
-        return new Product(type, pname, des, url, price, av);
-    }
-    public static void updateByNum(int pnum) {
-
-            List<Product> productList = CategoryList.getProduct();
-            LOGGER.info(LINE);
-
-            Product updatedProduct = getProductInfo();
-            if (updatedProduct != null) {
-                Product.updateProductByNum(productList, pnum, updatedProduct);
-
-            } else {
-                ErrorMsg.showError4();
-            }
-    }
-    public static void updateByName(String pname) {
-
-        List<Product> productList = CategoryList.getProduct();
-        LOGGER.info(LINE);
-
-        Product updatedProduct = getProductInfo();
-        if (updatedProduct != null) {
-            Product.updateProductByName(productList, pname, updatedProduct);
-
-        } else {
-            ErrorMsg.showError4();
-        }
-
-    }
 
     public static void removeProductByNum(List<Product> productList, int numProduct) {
         if (numProduct > 0 && numProduct <= productList.size()) {
@@ -210,6 +137,8 @@ public class Product {
 
             LOGGER.info("\u001B[32mProduct removed successfully.\u001B[0m");
         }
+        isUpdated = false;
+        LOGGER.info("\u001B[34mInvalid product number. Please enter a valid product number.\u001B[0m");
 
     }
     public static void removeProductByType(List<Product> productList, String typeToRemove) {
@@ -250,7 +179,7 @@ public class Product {
             LOGGER.info("\u001B[32mProduct Updated successfully.\u001B[0m");
         } else {
             isUpdated = false;
-            LOGGER.info("Invalid product number. Please enter a valid product number.");
+            LOGGER.info("\u001B[34mInvalid product number. Please enter a valid product number.\u001B[0m");
         }
     }
     public static void updateProductByName(List<Product> productList,String oldN, Product updatedProduct) {
@@ -275,126 +204,9 @@ public class Product {
         isAdded=true;
         LOGGER.info("\u001B[32mProduct Added successfully.\u001B[0m");
     }
-    public static void add(){
-        List<Product> productList;
-        productList = CategoryList.getProduct();
 
-        LOGGER.info(LINE);
-        LOGGER.info("\u001b[35mEnter Categry:\u001b[0m");
-        String cat = scan.next();
 
-        LOGGER.info("\u001b[35mEnter Product Name:\u001b[0m");
-        String namee = scan.next();
 
-        LOGGER.info("\u001b[35mEnter Description:\u001b[0m");
-        String dess = scan.next();
-
-        LOGGER.info("\u001b[35mEnter Image:\u001b[0m");
-        String imgg = scan.next();
-
-        LOGGER.info("\u001b[35mEnter Price:\u001b[0m");
-        String pr = scan.next();
-
-        LOGGER.info("\u001b[35mIs it available? (true/false):\u001b[0m");
-        String avv = scan.next();
-
-        if (cat.isEmpty() || namee.isEmpty() || dess.isEmpty() || imgg.isEmpty() || pr.isEmpty() || avv.isEmpty()) {
-            ErrorMsg.showError4();
-        }
-        // Call the updateUserByNum method with the desired user number and new information
-        Product.addProduct(productList, cat,namee,dess,imgg,pr,avv);
-        Product.viewProducts(productList);
-    }
-    public static void search(List<Product> productList) {
-        List<Product> product1;
-        product1 = CategoryList.getProduct();
-
-        Menu.searchList();
-        String select = scan.nextLine();
-
-        if (select.equals("1")) {
-            LOGGER.info("\u001b[35mEnter the product name:\u001b[0m");
-            String pname = scan.nextLine();
-
-            boolean isExisted = false;
-            for (int i = 0; i < productList.size(); i++) {
-                Product product = productList.get(i);
-                if (product.getName().equalsIgnoreCase(pname)) {
-                    String productInfo = "\u001b[35m" + i + ". " + product.getType() + " , " + product.getName() +
-                            " , " + product.getDescription() + " , " + product.getImage() +
-                            " , " + product.getPrice() + " $ " + " , " + product.isAvailability() + "\u001b[0m";
-                    println(SET + productInfo + RESET);
-
-                    isExisted = true;
-                    // Ask if the user wants to buy the product
-                    Menu.manageProducts();
-                    String choose = scan.nextLine();
-
-                    // Process the user's decision
-                    switch (choose) {
-                        case "1":
-                            // Pass the index of the selected product to the PlaceOrder method
-                            updateByName(product.getName());
-                            break;
-
-                        case "2":
-                            removeProductByName(product1, product.getName());
-                            break;
-
-                        case "3":
-                            // No action needed for option 3
-                            break;
-
-                        default:
-                            ErrorMsg.showWarning();
-                            break;
-                    }
-                    // Break out of the loop since the product is found
-                }
-            }
-            if (!isExisted) {
-                LOGGER.info("\u001b[34mProduct not found. Please check the product name and try again.\u001b[0m");
-            }
-        }
-        else if (select.equals("2")) {
-            LOGGER.info("\u001b[35mEnter the product Category:\u001b[0m");
-            String searchProductType = scan.nextLine();
-            boolean isExisted2 = false;
-
-            // Display all products of the specified category
-            for (int i = 0; i < productList.size(); i++) {
-                Product product = productList.get(i);
-                if (product.getType().equalsIgnoreCase(searchProductType)) {
-                    String productInfo = "\u001b[35m" + i + ". " + product.getType() + " , " + product.getName() +
-                            " , " + product.getDescription() + " , " + product.getImage() +
-                            " , " + product.getPrice() + " $ " + " , " + product.isAvailability() + "\u001b[0m";
-                    println(SET+ productInfo +RESET);
-                    isExisted2 = true;
-                }
-            }
-            if (isExisted2) {
-                LOGGER.info("\u001b[35m Do You Want to Delete Category (yes/no): \u001b[0m");
-                String choose = scan.nextLine();
-
-                if (choose.equalsIgnoreCase("yes")) {
-                    removeProductByType(productList, searchProductType);
-                } else if (choose.equalsIgnoreCase("no")) {
-                    LOGGER.info("\u001b[34mMaybe next time. Have a great day!\u001b[0m");
-                } else {
-                    ErrorMsg.showWarning();
-                }
-            } else {
-                LOGGER.info("\u001b[34mCategory not found. Please check the Category name and try again.\u001b[0m");
-            }
-        }
-
-        else if (select.equals("3")){
-            return;
-        }
-        else
-            ErrorMsg.showWarning();
-
-    }
     }
 
 
