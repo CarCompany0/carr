@@ -1,14 +1,9 @@
 package org.example;
 
-
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Logger;
 
 public class Product {
-    private static final PrintWriter writer = new PrintWriter(System.out, true);
-    public static void println(String message) {print(message);}
-    private static void print(String output) {writer.println(output);}
     private static final String RESET = "\u001B[0m";
     private static final String SET =  "\u001B[35m";
 
@@ -42,8 +37,7 @@ public class Product {
     public static boolean isDeleted = false;
 
     public static boolean isUpdated = false;
-
-    public static boolean isDisplayed = false;
+    
 
     public Product(String type, String name, String description, String image, String price, boolean availability) {
         this.type = type;
@@ -121,9 +115,8 @@ public class Product {
         for (Product product : productList) {
             String s = i + "- " + product.getType() + " , " + product.getName() + " , " + product.getDescription() +
                     " , " + product.getImage() + " , " + product.getPrice() + " $ " + " , " + product.isAvailability();
-            println(SET+ s + RESET);
+           LOGGER.info(SET+ s + RESET);
             i++;
-            isDisplayed = true;
 
         }
         numProduct = i;
