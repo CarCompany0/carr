@@ -10,8 +10,8 @@ Feature: Notifications
 
   Scenario: Installer recives new installation request
     Given the user is a customer
-    When The customer enters product name is "camera"
-    And the  customer  current email is "leema@gmail.com"
-    And the  customer  password is "00000"
+    When The customer enters product name is "Wheel locks"
+    And the  customer  current email is "jood@gmail.com"
+    And the  customer  password is "54321"
     And the installer date is "3"
     Then an email will be sent to "s12029320@stu.najah.edu"
