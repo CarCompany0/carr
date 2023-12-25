@@ -6,14 +6,23 @@ import car.database.CategoryList;
 import car.database.InstallationDatesList;
 import org.example.*;
 
+import java.io.PrintWriter;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 public class Main {
+    private static final PrintWriter writer = new PrintWriter(System.out, true);
+    public static void println(String message) {print(message);}
+    private static void print(String output) {writer.println(output);}
+    private static final String RESET = "\u001B[0m";
+    private static final String SET =  "\u001B[35m";
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
     private static final Scanner scan = new Scanner(System.in);
     private static final LoginSteps loginSteps = new LoginSteps();
+    private static boolean isExisted = false;
+    private static boolean  isRequsted=false;
+
     private static final String LINE = "\u001b[35m--------------------------------------------\u001b[0m";
     private static void line() {
         LOGGER.info(Main.LINE);
@@ -80,7 +89,39 @@ public class Main {
 
                                                                 switch (inp1) {
                                                                     case 1:
-                                                                        Product.updateByNum(selectProduct);
+
+                                                                        LOGGER.info(LINE);
+
+
+                                                                        LOGGER.info("\u001b[35mEnter new type:\u001b[0m");
+                                                                        String type = scan.next();
+
+                                                                        LOGGER.info("\u001b[35mEnter new product name:\u001b[0m");
+                                                                        String pname2 = scan.next();
+
+                                                                        LOGGER.info("\u001b[35mEnter new description:\u001b[0m");
+                                                                        String des = scan.next();
+
+                                                                        LOGGER.info("\u001b[35mEnter new image URL:\u001b[0m");
+                                                                        String url = scan.next();
+
+                                                                        LOGGER.info("\u001b[35mEnter new price:\u001b[0m");
+                                                                        String price = scan.next();
+
+                                                                        LOGGER.info("\u001b[35mIs it available? (true/false):\u001b[0m");
+                                                                        String ava = scan.next();
+
+                                                                        if (type.isEmpty() || pname2.isEmpty() || des.isEmpty() || url.isEmpty() || price.isEmpty() || ava.isEmpty()) {
+                                                                            ErrorMsg.showError4();
+                                                                        }
+                                                                        boolean av = Boolean.parseBoolean(ava);
+                                                                        Product product3= new Product(type, pname2, des, url, price, av);
+                                                                        if (product3 != null) {
+                                                                            Product.updateProductByNum(productList, selectProduct, product3);
+
+                                                                        } else {
+                                                                            ErrorMsg.showError4();
+                                                                        }
                                                                         exitInnerLoop = true;
                                                                         break;
                                                                     case 2:
@@ -114,13 +155,157 @@ public class Main {
                                         }
                                         break;
                                     case 2:
-                                        Product.add();
+                                        List<Product> productList1;
+                                        productList1 = CategoryList.getProduct();
+
+                                        LOGGER.info(LINE);
+                                        LOGGER.info("\u001b[35mEnter Categry:\u001b[0m");
+                                        String cat = scan.next();
+
+                                        LOGGER.info("\u001b[35mEnter Product Name:\u001b[0m");
+                                        String namee = scan.next();
+
+                                        LOGGER.info("\u001b[35mEnter Description:\u001b[0m");
+                                        String dess = scan.next();
+
+                                        LOGGER.info("\u001b[35mEnter Image:\u001b[0m");
+                                        String imgg = scan.next();
+
+                                        LOGGER.info("\u001b[35mEnter Price:\u001b[0m");
+                                        String pr = scan.next();
+
+                                        LOGGER.info("\u001b[35mIs it available? (true/false):\u001b[0m");
+                                        String avv = scan.next();
+
+                                        if (cat.isEmpty() || namee.isEmpty() || dess.isEmpty() || imgg.isEmpty() || pr.isEmpty() || avv.isEmpty()) {
+                                            ErrorMsg.showError4();
+                                        }
+                                        // Call the updateUserByNum method with the desired user number and new information
+                                        Product.addProduct(productList1, cat,namee,dess,imgg,pr,avv);
+                                        Product.viewProducts(productList1);
                                         // Display the updated user list
                                         break;
                                     case 3:
 
-                                        productList = CategoryList.getProduct();
-                                        Product.search(productList);
+                                        List<Product> product1;
+                                        product1 = CategoryList.getProduct();
+
+                                        Menu.searchList();
+                                        String select = scan.next();
+
+                                        if (select.equals("1")) {
+                                            LOGGER.info("\u001b[35mEnter the product name:\u001b[0m");
+                                            String pname = scan.next();
+
+                                            boolean isExisted = false;
+                                            for (int i = 0; i < product1.size(); i++) {
+                                                Product product = product1.get(i);
+                                                if (product.getName().equalsIgnoreCase(pname)) {
+                                                    String productInfo = "\u001b[35m" + i + ". " + product.getType() + " , " + product.getName() +
+                                                            " , " + product.getDescription() + " , " + product.getImage() +
+                                                            " , " + product.getPrice() + " $ " + " , " + product.isAvailability() + "\u001b[0m";
+                                                    println(SET + productInfo + RESET);
+
+                                                    isExisted = true;
+                                                    // Ask if the user wants to buy the product
+                                                    Menu.manageProducts();
+                                                    String choose = scan.next();
+
+                                                    // Process the user's decision
+                                                    switch (choose) {
+                                                        case "1":
+                                                            // Pass the index of the selected product to the PlaceOrder method
+                                                            List<Product> productList4 = CategoryList.getProduct();
+                                                            LOGGER.info(LINE);
+
+                                                            LOGGER.info("\u001b[35mEnter new type:\u001b[0m");
+                                                            String type = scan.next();
+
+                                                            LOGGER.info("\u001b[35mEnter new product name:\u001b[0m");
+                                                            String pname2 = scan.next();
+
+                                                            LOGGER.info("\u001b[35mEnter new description:\u001b[0m");
+                                                            String des = scan.next();
+
+                                                            LOGGER.info("\u001b[35mEnter new image URL:\u001b[0m");
+                                                            String url = scan.next();
+
+                                                            LOGGER.info("\u001b[35mEnter new price:\u001b[0m");
+                                                            String price = scan.next();
+
+                                                            LOGGER.info("\u001b[35mIs it available? (true/false):\u001b[0m");
+                                                            String ava = scan.next();
+
+                                                            if (type.isEmpty() || pname2.isEmpty() || des.isEmpty() || url.isEmpty() || price.isEmpty() || ava.isEmpty()) {
+                                                               ErrorMsg.showError4();
+                                                            }
+                                                            boolean av = Boolean.parseBoolean(ava);
+                                                            Product product3= new Product(type, pname2, des, url, price, av);
+                                                            if (product3 != null) {
+                                                                Product.updateProductByName(productList4, pname2, product3);
+
+                                                            } else {
+                                                                ErrorMsg.showError4();
+                                                            }
+                                                            break;
+
+                                                        case "2":
+                                                            Product.removeProductByName(product1, product.getName());
+                                                            break;
+
+                                                        case "3":
+                                                            // No action needed for option 3
+                                                            break;
+
+                                                        default:
+                                                            ErrorMsg.showWarning();
+                                                            break;
+                                                    }
+                                                    // Break out of the loop since the product is found
+                                                }
+                                            }
+                                            if (!isExisted) {
+                                                LOGGER.info("\u001b[34mProduct not found. Please check the product name and try again.\u001b[0m");
+                                            }
+                                        }
+                                        else if (select.equals("2")) {
+                                            LOGGER.info("\u001b[35mEnter the product Category:\u001b[0m");
+                                            String searchProductType = scan.next();
+                                            boolean isExisted2 = false;
+
+                                            // Display all products of the specified category
+                                            for (int i = 1; i < product1.size(); i++) {
+                                                Product product = product1.get(i);
+                                                if (product.getType().equalsIgnoreCase(searchProductType)) {
+                                                    String productInfo = "\u001b[35m" + i + ". " + product.getType() + " , " + product.getName() +
+                                                            " , " + product.getDescription() + " , " + product.getImage() +
+                                                            " , " + product.getPrice() + " $ " + " , " + product.isAvailability() + "\u001b[0m";
+                                                    println(SET+ productInfo +RESET);
+                                                    isExisted2 = true;
+                                                }
+                                            }
+                                            if (isExisted2) {
+                                                LOGGER.info("\u001b[35m Do You Want to Delete Category (yes/no): \u001b[0m");
+                                                String choose = scan.next();
+
+                                                if (choose.equalsIgnoreCase("yes")) {
+                                                    Product.removeProductByType(product1, searchProductType);
+                                                } else if (choose.equalsIgnoreCase("no")) {
+                                                    LOGGER.info("\u001b[34mMaybe next time. Have a great day!\u001b[0m");
+                                                } else {
+                                                    ErrorMsg.showWarning();
+                                                }
+                                            } else {
+                                                LOGGER.info("\u001b[34mCategory not found. Please check the Category name and try again.\u001b[0m");
+                                            }
+                                        }
+
+                                        else if (select.equals("3")){
+                                            break;
+                                        }
+                                        else
+                                            ErrorMsg.showWarning();
+
                                         break;
                                     case 4:
                                         productList = CategoryList.getProduct();
@@ -246,7 +431,30 @@ public class Main {
                                         break;
                                     } else {
                                         int selectedProductIndex = selectProduct - 1;
-                                        Customer.Order.placeOrder(product1, selectedProductIndex);
+
+                                        if (selectedProductIndex >= 0 && selectedProductIndex < product1.size()) {
+                                            Product selectedProduct = product1.get(selectedProductIndex);
+
+                                            if (selectedProduct.isAvailability()) {
+                                                LOGGER.info("\u001b[35mQuantity:\u001b[0m");
+                                                int quantity = scan.nextInt();
+
+                                                println("\u001b[35mYou have selected: \u001b[35m" + quantity + "\u001b[35m of \u001b[35m" +
+                                                        selectedProduct.getName() + " " + selectedProduct.getPrice() + "$" + "\u001b[0m");
+
+
+                                                // Add the order to the customer's order list
+                                                Customer.Order newOrder = new Customer.Order(selectedProduct, quantity);
+                                                Customer.oL.addOrder(newOrder);
+
+                                                LOGGER.info("\u001b[35mOrder Added Successfully To Cart \u001b[0m");
+
+                                                // Send order confirmation email
+                                               newOrder.sendOrderConfirmationEmail(selectedProduct.getName(), quantity, newOrder.getTotalPrice());
+                                            } else {
+                                                LOGGER.info("\u001b[34mThe Product Out Of Stock\u001b[0m");
+                                            }
+                                        }
                                     }
                                 }
                                 break;
@@ -254,7 +462,70 @@ public class Main {
                             case "2":
 
                                 p1 = CategoryList.getProduct();
-                                Customer.search(p1);
+                                List<Product> product1;
+                                product1 = CategoryList.getProduct();
+
+
+                                LOGGER.info("\u001b[35mEnter the product name:\u001b[0m");
+                                String pname = scan.next();
+
+                                for (int i = 1; i < p1.size(); i++) {
+                                    Product product = p1.get(i);
+                                    if (product.getName().equalsIgnoreCase(pname)) {
+                                        String productInfo = "\u001b[35m"+i + ". " + product.getType() + " , " + product.getName() +
+                                                " , " + product.getDescription() + " , " + product.getImage() +
+                                                " , " + product.getPrice() + " $ " + " , " + product.isAvailability()+"\u001b[0m";
+                                        println("\u001B[35m" + productInfo + RESET);
+                                        isExisted=true;
+
+
+                                        // Ask if the user wants to buy the product
+                                        LOGGER.info("\u001b[35mDo you want to buy it? (yes/no): \u001b[0m");
+                                        String buyDecision = scan.next();
+
+                                        // Process the user's decision
+                                        switch (buyDecision.toLowerCase()) {
+                                            case "yes":
+                                                // Pass the index of the selected product to the PlaceOrder method
+                                                if (i >= 0 && i < product1.size()) {
+                                                    Product selectedProduct = product1.get(i);
+
+                                                    if (selectedProduct.isAvailability()) {
+                                                        LOGGER.info("\u001b[35mQuantity:\u001b[0m");
+                                                        int quantity = scan.nextInt();
+
+                                                        println("\u001b[35mYou have selected: \u001b[35m" + quantity + "\u001b[35m of \u001b[35m" +
+                                                                selectedProduct.getName() + " " + selectedProduct.getPrice() + "$" + "\u001b[0m");
+
+
+                                                        // Add the order to the customer's order list
+                                                        Customer.Order newOrder = new Customer.Order(selectedProduct, quantity);
+                                                        Customer.oL.addOrder(newOrder);
+
+                                                        LOGGER.info("\u001b[35mOrder Added Successfully To Cart \u001b[0m");
+
+                                                        // Send order confirmation email
+                                                       newOrder.sendOrderConfirmationEmail(selectedProduct.getName(), quantity, newOrder.getTotalPrice());
+                                                    } else {
+                                                        LOGGER.info("\u001b[34mThe Product Out Of Stock\u001b[0m");
+                                                    }
+                                                }
+                                                break;
+
+                                            case "no":
+                                                LOGGER.info("\u001b[34mMaybe next time. Have a great day!\u001b[0m");
+                                                break;
+
+                                            default:
+                                                LOGGER.info("\u001b[34mInvalid Input. Please try again\u001b[0m");
+                                                // No need for a break here since it's the last case
+                                        }
+                                        // Break out of the loop since the product is found
+                                    }
+                                }
+                                if (!isExisted) {
+                                    LOGGER.info("\u001b[34mProduct not found. Please check the product name and try again.\u001b[0m");
+                                }
                                 break;
 
                             case "3":
@@ -277,7 +548,47 @@ public class Main {
                                     String customerLocation = currentUser1.getLocation();
                                     String customerPhoneNum = currentUser1.getPhoneNum();
 
-                                    InstallationRequest.requestInstallation(req1, p1, customerName, customerLocation, customerPhoneNum);
+                                    List<InstallerDates> inss;
+                                    inss = InstallationDatesList.getInstaller();
+                                    List<Product> product11;
+                                    product11 = CategoryList.getProduct();
+
+                                    Product.viewProducts(product11);
+                                    LOGGER.info("\u001B[33mEnter Product Name for Installation Request:\u001B[0m");
+
+                                    String requestedProductName = scan.next();
+
+                                    // Check if the requested product exists in the product list
+                                    boolean productExists = false;
+                                    for (Product product : p1) {
+                                        if (product.getName().equalsIgnoreCase(requestedProductName)) {
+                                            productExists = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!productExists) {
+                                        isRequsted=false;
+                                        LOGGER.warning("\u001B[34mThe specified product does not exist in the product list.\u001B[0m");
+                                        return;
+                                    }
+
+                                    InstallerDates.viewDates(inss);
+                                    LOGGER.info("\u001B[33m Select preferred date:\u001B[0m");
+                                    int selectedDateIndex = Integer.parseInt(scan.next()) - 1;
+
+                                    if (selectedDateIndex >= 0 && selectedDateIndex < inss.size()) {
+                                        InstallerDates selectedInstallerDate = inss.get(selectedDateIndex);
+                                        // Create and add the installation request
+                                        InstallationRequest newRequest = new InstallationRequest(selectedInstallerDate.getDay(), selectedInstallerDate.getMonth(),
+                                                selectedInstallerDate.getYear(), selectedInstallerDate.getHour(), selectedInstallerDate.getInstallerName(), requestedProductName, customerName,customerLocation,customerPhoneNum);
+                                        req1.add(newRequest);
+
+                                        isRequsted=true;
+                                        LOGGER.info("\u001B[32mInstallation request added successfully.\u001B[0m");
+                                        InstallationRequest.sendEmailNotification();
+
+                                    }
+                                    else LOGGER.warning("\u001B[34mInvalid Date index \u001B[0m" );
                                 }
                                 break;
 
@@ -376,7 +687,22 @@ public class Main {
                             for (User user : Userslist.getUsers()) {
                                 if (user.getEmail().equals(email)) {
                                     currentUser = user.getUsername();
-                                    InstallerDates.addDate(inss,currentUser);
+
+                                    LOGGER.info("\u001B[33m Enter New Date:\u001B[0m");
+                                    LOGGER.info("\u001B[33m Day:\u001B[0m");
+                                    String dayy = scan.nextLine();
+
+                                    LOGGER.info("\u001B[33m Month:\u001B[0m");
+                                    String monthh = scan.nextLine();
+                                    LOGGER.info("\u001B[33m Year:\u001B[0m");
+                                    String yearr = scan.nextLine();
+                                    LOGGER.info("\u001B[33m Hour:\u001B[0m");
+                                    String hourr = scan.nextLine();
+
+                                    InstallerDates newDate = new InstallerDates(dayy, monthh, yearr, hourr, currentUser);
+                                    // Add the new product to the productList
+                                    inss.add(newDate);
+                                    LOGGER.info("\u001B[32mDate Added successfully.\u001B[0m");
                                 }
                             }
                             InstallerDates.viewDates(inss);
