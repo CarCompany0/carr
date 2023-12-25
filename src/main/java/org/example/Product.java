@@ -37,7 +37,6 @@ public class Product {
     }
 
     public static void showError2() {
-      ;
         LOGGER.info("\u001B[34mInvalid product index \u001B[0m");
     }
 
