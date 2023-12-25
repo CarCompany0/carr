@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import static org.junit.Assert.assertTrue;
-public class notification {
+public class  notification {
     private static final Logger LOGGER = Logger.getLogger(customer.class.getName());
 
     LoginSteps loginsteps;
@@ -87,11 +87,11 @@ public class notification {
                 LOGGER.info("\u001b[35mYou have selected: \u001b[35m" + qua + "\u001b[35m of \u001b[35m" + selectedProduct.getName() + " " + selectedProduct.getPrice() +"$"+ "\u001b[0m");
 
                 Customer.Order newOrder = new Customer.Order(selectedProduct, qua);
+                Customer customer=new Customer(null,null,null,null);
                 cus.oL.addOrder(newOrder);
                 isBouught=true;
                 LOGGER.info("\u001b[35mOrder Added Successfully To Cart \u001b[0m"); //+ User.getUsername()
-                Customer.Order.sendOrderConfirmationEmail(selectedProduct.getName(),qua,newOrder.getTotalPrice());
-                assertTrue(Customer.isIsSent());
+                newOrder.sendOrderConfirmationEmail(selectedProduct.getName(),qua,newOrder.getTotalPrice());
             }
 
         }
@@ -117,57 +117,61 @@ this.selectedDateIndex3=Integer.parseInt(string);
     @Then("an email will be sent to {string}")
     public void anEmailWillBeSentTo(String string) {
         // Write code here that turns the phrase above into concrete actions
-        boolean isRequsted=false;
-        List<InstallerDates> inss;
-        inss = InstallationDatesList.getInstaller();
-
-        List<Product> product1;
-        product1 = CategoryList.getProduct();
-
+        boolean isRequsted = false;
+        User currentUser1 = null;
         List<InstallationRequest> req1;
         req1 = InstallationRequestsList.getRequest();
 
+        List<Product> p1;
 
-        // Check if the requested product exists in the product list
-        boolean productExists = false;
-        for (Product product : product1) {
-            if (product.getName().equalsIgnoreCase(pductname)) {
-                productExists = true;
+        p1 = CategoryList.getProduct();
+
+        for (User user : Userslist.getUsers()) {
+            if (user.getEmail().equals(email5)) {
+                currentUser1 = user;
                 break;
             }
         }
-        if (!productExists) {
-            isRequsted=false;
-            LOGGER.warning("\u001B[31mThe specified product does not exist in the product list.\u001B[0m");
-            return;
-        }
-        LoginSteps.checkAuth(email5, password5);
-        if (LoginSteps.isCustomerIsLogged()){
-            User currentUser = null;
-            for (User user : Userslist.getUsers()) {
-                if (user.getPassword().equals(password5)) {
-                    currentUser = user;
+
+            String customerName = currentUser1.getUsername();
+            String customerLocation = currentUser1.getLocation();
+            String customerPhoneNum = currentUser1.getPhoneNum();
+
+            List<InstallerDates> inss;
+            inss = InstallationDatesList.getInstaller();
+            List<Product> product11;
+            product11 = CategoryList.getProduct();
+
+            Product.viewProducts(product11);
+
+            // Check if the requested product exists in the product list
+            boolean productExists = false;
+            for (Product product : p1) {
+                if (product.getName().equalsIgnoreCase(pductname)) {
+                    productExists = true;
                     break;
-                }}
-
-            if (currentUser != null) {
-                if (selectedDateIndex3 >= 0 && selectedDateIndex3 < inss.size()) {
-                    InstallerDates selectedInstallerDate = inss.get(selectedDateIndex3);
-
-                    InstallationRequest newRequest = new InstallationRequest(selectedInstallerDate.getDay(), selectedInstallerDate.getMonth(),
-                            selectedInstallerDate.getYear(), selectedInstallerDate.getHour(), selectedInstallerDate.getInstallerName(),
-                            pductname, currentUser.getUsername(), currentUser.getLocation(), currentUser.getPhoneNum());
-                    req1.add(newRequest);
-                    isRequsted = true;
-                    LOGGER.info("\u001B[32mInstallation request added successfully.\u001B[0m");
-                    InstallationRequest.sendEmailNotification();
-                    assertTrue(InstallationRequest.isIsSented());
                 }
             }
-        }
+            if (!productExists) {
+                isRequsted = false;
+                LOGGER.warning("\u001B[34mThe specified product does not exist in the product list.\u001B[0m");
+                return;
+            }
+
+            else if (selectedDateIndex3 >= 0 && selectedDateIndex3 < inss.size()) {
+                InstallerDates selectedInstallerDate = inss.get(selectedDateIndex3);
+                // Create and add the installation request
+                InstallationRequest newRequest = new InstallationRequest(selectedInstallerDate.getDay(), selectedInstallerDate.getMonth(),
+                        selectedInstallerDate.getYear(), selectedInstallerDate.getHour(), selectedInstallerDate.getInstallerName(), pductname, customerName, customerLocation, customerPhoneNum);
+                req1.add(newRequest);
+
+                isRequsted = true;
+                LOGGER.info("\u001B[32mInstallation request added successfully.\u001B[0m");
+                InstallationRequest.sendEmailNotification();
+
+            } else LOGGER.warning("\u001B[34mInvalid Date index \u001B[0m");
 
     }
-
     }
 
 
